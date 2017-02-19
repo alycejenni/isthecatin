@@ -11,5 +11,3 @@ urlpatterns = [
     url(r"^$", site.mainpage),
     url(r'^img/(?P<imgdata>.*)$', site.setimage),
 ]
-
-ur.urlopen()
