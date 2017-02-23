@@ -1,13 +1,19 @@
 from django.shortcuts import render
-from .models import Image
-import base64
 from datetime import datetime as dt
 import pytz
+import boto
+import catflap.settings as settings
 
 
 def mainpage(request):
-    img = Image.objects.first()
-    b64img = base64.b64encode(img.imgdata)
     london = pytz.timezone("Europe/London")
-    timeago = london.localize(dt.now()) - img.timetaken
-    return render(request, "main.html", {"imgdata": b64img, "timetaken": img.timetaken, "timeago": timeago})
+    s3 = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host = "s3.eu-west-2.amazonaws.com")
+    bucket = s3.get_bucket(settings.IMAGE_BUCKET)
+    key = next((k for k in bucket.get_all_keys() if k.is_latest))
+    if key is not None:
+        imgurl = key.generate_url(expires_in = 0, query_auth = False)
+        timeago = london.localize(dt.now()) - key.last_modified
+        return render(request, "main.html", {"imgurl": imgurl, "timeago": timeago})
+    else:
+        imgurl = None
+        timeago = london.localize(dt.now())

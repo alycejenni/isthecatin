@@ -12,6 +12,12 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = os.environ["DJANGO_DEBUG"]
 
+IMAGE_BUCKET = os.environ["IMAGE_BUCKET"]
+
+AWS_KEY = os.environ["AWS_KEY"]
+
+AWS_SECRET = os.environ["AWS_SECRET"]
+
 ALLOWED_HOSTS = ["isthecatin.herokuapp.com", "localhost", "www.isthecat.in"]
 
 INSTALLED_APPS = [
