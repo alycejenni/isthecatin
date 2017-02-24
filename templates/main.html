@@ -1,7 +1,18 @@
 {% extends "basepage.html" %}
+{% block title %}
+    is the cat in?
+{% endblock %}
 {% block content %}
-    <h1>is the cat in?</h1>
-    <br>
-    <img alt="this is probably a picture of ganja's bum" width="1024px" src="{{ imgurl }}"/>
-    <p>this was taken {{ timeago }} ago</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img alt="this is probably a picture of ganja's bum" src="{{ imgurl }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>this was taken {{ timeago }} ago</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

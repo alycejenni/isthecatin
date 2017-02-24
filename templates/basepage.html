@@ -1,15 +1,27 @@
 {% load static %}
+{% load cattags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Is the cat in?</title>
+    <title>{% block title %}{% endblock %}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Pangolin" rel="stylesheet">
     <link href="{% static 'style.css' %}" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="text-align: right; padding-right: 10px;">
+            <a href="{% url 'current' %}"><h1 class="{% isactive 'current' %}">is the cat in?</h1></a>
+        </div>
+        <div class="col-md-6" style="text-align: left; padding-left: 10px;">
+            <a href="{% url 'history' %}"><h1 class="{% isactive 'history' %}">was the cat in?</h1></a>
+        </div>
+    </div>
+</div>
+<br>
 {% block content %}
 {% endblock %}
 </body>
