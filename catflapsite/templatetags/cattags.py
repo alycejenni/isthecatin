@@ -7,13 +7,12 @@ register = template.Library()
 
 @register.simple_tag(takes_context = True)
 def isactive(context, viewname):
-    if viewname == "current" and context["request"].path == "/":
-        return "activepage"
+    requestpath = context["request"].path
     try:
-        pattern = "^" + django.urls.reverse(viewname)
-    except:
-        pattern = viewname
-    if re.search(pattern, context["request"].path):
+        url = "^" + django.urls.reverse(viewname) + "$"
+    except django.urls.NoReverseMatch:
+        url = viewname
+    if re.search(url, requestpath):
         return "activepage"
     else:
         return "inactivepage"

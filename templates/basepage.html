@@ -13,11 +13,11 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-6" style="text-align: right; padding-right: 10px;">
-            <a href="{% url 'current' %}"><h1 class="{% isactive 'current' %}">is the cat in?</h1></a>
+        <div class="col-md-6">
+            <a href="{% url 'current' %}" class="{% isactive 'current' %}">is the cat in?</a>
         </div>
-        <div class="col-md-6" style="text-align: left; padding-left: 10px;">
-            <a href="{% url 'history' %}"><h1 class="{% isactive 'history' %}">was the cat in?</h1></a>
+        <div class="col-md-6">
+            <a href="{% url 'history' %}" class="{% isactive 'history' %}">was the cat in?</a>
         </div>
     </div>
 </div>

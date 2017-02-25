@@ -8,7 +8,8 @@
         <div class="row">
         {% for img in r %}
             <div class="col-md-2">
-                <img alt="this is probably a picture of ganja's bum" class="img-thumbnail" src="{{ img }}"/>
+                <img alt="this is probably a picture of the cat's bum" class="img-thumbnail" src="{{ img.url }}"/>
+                <p>{{ img.time_taken }}</p>
             </div>
         {% endfor %}
         </div>
