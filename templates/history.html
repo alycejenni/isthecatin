@@ -1,0 +1,18 @@
+{% extends "basepage.html" %}
+{% block title %}
+    was the cat in?
+{% endblock %}
+{% block content %}
+    <div class="container">
+    {% for r in imgrows %}
+        <div class="row">
+        {% for img in r %}
+            <div class="col-md-2">
+                <img alt="this is probably a picture of the cat's bum" class="img-thumbnail" src="{{ img.url }}"/>
+                <p>{{ img.time_taken }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
