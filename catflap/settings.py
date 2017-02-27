@@ -18,6 +18,8 @@ AWS_KEY = os.environ["AWS_KEY"]
 
 AWS_SECRET = os.environ["AWS_SECRET"]
 
+SALT = "814934EAB1D13D3E20EF6E528943DA48D36F1CAB078976F0FD1B2113292F965A"
+
 ALLOWED_HOSTS = ["isthecatin.herokuapp.com", "localhost", "www.isthecat.in"]
 
 INSTALLED_APPS = [
@@ -100,8 +102,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+SITE_ROOT = os.path.join(BASE_DIR, "catflapsite")
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
+STATIC_ROOT = os.path.join(SITE_ROOT, "static")
+IMG_PKL = os.path.join(STATIC_ROOT, "imgs.pkl")

@@ -24,6 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Pangolin" rel="stylesheet">
     <link href="{% static 'style.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -35,10 +36,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <a href="{% url 'current' %}" class="{% isactive 'current' %}">is the cat in?</a>
+            <a href="{% url 'current' %}" class="{% isactive 'current' %} h1">is the cat in?</a>
         </div>
         <div class="col-md-6">
-            <a href="{% url 'history' %}" class="{% isactive 'history' %}">was the cat in?</a>
+            <a href="{% url 'history' %}" class="{% isactive 'history' %} h1">was the cat in?</a>
         </div>
     </div>
 </div>

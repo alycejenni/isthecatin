@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}),
     url(r"^$", site.current, name="current"),
     url(r"^history$", site.history, name="history"),
+    url(r'^notcat/(?P<img>.*)$', site.notcat, name="notcat"),
 ]

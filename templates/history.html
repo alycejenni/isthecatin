@@ -1,18 +1,27 @@
 {% extends "basepage.html" %}
+{% load static %}
 {% block title %}
     was the cat in?
 {% endblock %}
 {% block content %}
     <div class="container">
-    {% for r in imgrows %}
-        <div class="row">
-        {% for img in r %}
-            <div class="col-md-2">
-                <img alt="this is probably a picture of the cat's bum" class="img-thumbnail" src="{{ img.url }}"/>
-                <p>{{ img.time_taken }}</p>
+        {% for r in imgrows %}
+            <div class="row">
+                {% for img in r %}
+                    <div class="col-md-2 col-xs-6">
+                        <form method="post" action="{% url 'notcat' img.id %}">
+                            {% csrf_token %}
+                            <div style="text-align: right">
+                                <input type="image" src="{% static 'notcat.png' %}" width="20px" alt="not a cat" title="this isn't a cat!"/>
+                            </div>
+                            <div style="position: relative; top: -20px; z-index: -100;">
+                                <img alt="this is probably a picture of the cat's bum" class="img-thumbnail"
+                                 src="{{ img.url }}"/></div>
+                            <p>{{ img.time_taken }}</p>
+                        </form>
+                    </div>
+                {% endfor %}
             </div>
         {% endfor %}
-        </div>
-    {% endfor %}
     </div>
 {% endblock %}
