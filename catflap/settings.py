@@ -18,7 +18,7 @@ AWS_KEY = os.environ["AWS_KEY"]
 
 AWS_SECRET = os.environ["AWS_SECRET"]
 
-SALT = "814934EAB1D13D3E20EF6E528943DA48D36F1CAB078976F0FD1B2113292F965A"
+SALT = os.environ["SALT"]
 
 ALLOWED_HOSTS = ["isthecatin.herokuapp.com", "localhost", "www.isthecat.in"]
 

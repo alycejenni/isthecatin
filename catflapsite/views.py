@@ -4,6 +4,7 @@ import os.path
 import pickle
 import catflap.settings as settings
 
+
 def current(request):
     key = kitty.get_latest_s3()
     if key is not None:
@@ -22,7 +23,7 @@ def history(request):
         keys = [k for k in keys if k.id not in tags or tags[k.id]]
     else:
         with open(settings.IMG_PKL, "wb") as file:
-            pickle.dump({k.id: True for k in keys}, file)
+            pickle.dump({ k.id: True for k in keys }, file)
     splitbysix = [keys[i:i + 6] for i in range(0, len(keys), 6)]
     return render(request, "history.html", {
         "imgrows": splitbysix
