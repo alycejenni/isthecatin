@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eb0b1fd-dead-4a63-92e8-3a76ff6f6298" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/basepage.html" afterPath="$PROJECT_DIR$/templates/basepage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/catflapsite/static/.nc" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catflapsite/static/imgs.pkl" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7272-smiling-cat-face-with-open-mouth.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7272-smiling-cat-face-with-open-mouth.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7273-grinning-cat-face-with-smiling-eyes.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7273-grinning-cat-face-with-smiling-eyes.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7274-cat-face-with-tears-of-joy.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7274-cat-face-with-tears-of-joy.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7276-cat-face-with-wry-smile.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7276-cat-face-with-wry-smile.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7277-kissing-cat-face-with-closed-eyes.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7277-kissing-cat-face-with-closed-eyes.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7278-weary-cat-face.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7278-weary-cat-face.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/7279-crying-cat-face.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/7279-crying-cat-face.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catflapsite/static/catheart.png" afterPath="$PROJECT_DIR$/catflapsite/static/images/catheart.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catflap/settings.py" afterPath="$PROJECT_DIR$/catflap/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catflapsite/utils.py" afterPath="$PROJECT_DIR$/catflapsite/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catflapsite/views.py" afterPath="$PROJECT_DIR$/catflapsite/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/history.html" afterPath="$PROJECT_DIR$/templates/history.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,13 +46,45 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="basepage.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/basepage.html">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catflap/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+            <state relative-caret-position="3424">
+              <caret line="110" column="42" lean-forward="false" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="history.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/history.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catflapsite/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catflapsite/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,15 +115,16 @@
         <option value="$PROJECT_DIR$/templates/tags/cattags.py" />
         <option value="$PROJECT_DIR$/catflapsite/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/catflapsite/templatetags/cattags.py" />
-        <option value="$PROJECT_DIR$/catflapsite/utils.py" />
         <option value="$PROJECT_DIR$/catflap/urls.py" />
         <option value="$PROJECT_DIR$/catflapsite/static/style.css" />
         <option value="$PROJECT_DIR$/templates/main.html" />
         <option value="$PROJECT_DIR$/catflap/.env" />
-        <option value="$PROJECT_DIR$/catflap/settings.py" />
-        <option value="$PROJECT_DIR$/catflapsite/views.py" />
-        <option value="$PROJECT_DIR$/templates/history.html" />
         <option value="$PROJECT_DIR$/templates/basepage.html" />
+        <option value="$PROJECT_DIR$/catflap/settings.py" />
+        <option value="$PROJECT_DIR$/catflapsite/static/.nc" />
+        <option value="$PROJECT_DIR$/catflapsite/views.py" />
+        <option value="$PROJECT_DIR$/catflapsite/utils.py" />
+        <option value="$PROJECT_DIR$/templates/history.html" />
       </list>
     </option>
   </component>
@@ -198,6 +245,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alice.butcher\Source\Workspaces\Python\isthecatin\catflapsite\static\images" />
       <recent name="C:\Users\alice.butcher\Source\Workspaces\Python\isthecatin\catflapsite" />
       <recent name="C:\Users\alice.butcher\Source\Workspaces\Python\isthecatin\templates\tags" />
     </key>
@@ -564,19 +612,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="27" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/catflapsite/static/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catflap/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -591,9 +631,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -633,7 +671,7 @@
         <state relative-caret-position="378">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -642,9 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -652,7 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,9 +704,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +728,7 @@
         <state relative-caret-position="448">
           <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -715,9 +747,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -741,7 +771,7 @@
         <state relative-caret-position="256">
           <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -760,9 +790,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +814,7 @@
         <state relative-caret-position="256">
           <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -805,9 +833,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -831,7 +857,7 @@
         <state relative-caret-position="256">
           <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -881,29 +907,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catflapsite/static/imgs.pkl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catflapsite/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="65" column="31" lean-forward="false" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/catflapsite/static/imgs.pkl" />
     <entry file="file://$PROJECT_DIR$/catflap/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -925,7 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="6" column="69" lean-forward="true" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,25 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/history.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catflapsite/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#45#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -971,23 +957,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/basepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/catflap/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="3424">
+          <caret line="110" column="42" lean-forward="false" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catflapsite/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/basepage.html">
+    <entry file="file://$PROJECT_DIR$/catflapsite/static/.nc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+        <state relative-caret-position="96">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catflapsite/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/history.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>

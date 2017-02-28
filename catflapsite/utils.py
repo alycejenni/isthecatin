@@ -4,8 +4,8 @@ import boto
 import catflap.settings as settings
 import base64
 from boto.s3.key import Key
-import pickle
 import os.path
+
 
 def localise(t):
     london = pytz.timezone("Europe/London")
@@ -20,10 +20,10 @@ def get_bucket():
 
 def get_all_s3():
     bucket = get_bucket()
-    return list(reversed(sorted(bucket.get_all_keys(), key = lambda x: x.last_modified)))
+    return list(reversed(sorted([k for k in bucket.get_all_keys() if k.name.endswith(".jpg")], key = lambda x: x.last_modified)))
 
 def get_latest_s3():
-    return get_all_s3()[0]
+    return next(k for k in get_all_s3() if "not%20a%20cat" not in k.generate_url(expires_in=0, query_auth=False))
 
 class ImgUrl(object):
     def __init__(self, s3_obj):
@@ -31,7 +31,6 @@ class ImgUrl(object):
         self.time_taken = localise(dt.strptime(s3_obj.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
         self.filename = self.url.split("/")[-1]
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
-
 
     @property
     def time_ago(self):
@@ -51,16 +50,18 @@ def get_key(b64img):
 
 
 def load_tags():
-    if os.path.isfile(settings.IMG_PKL):
+    if os.path.isfile(settings.NOT_CAT):
         try:
-            with open(settings.IMG_PKL, "rb") as file:
-                return pickle.load(file)
+            with open(settings.NOT_CAT, "r") as file:
+                return [l.strip() for l in file.readlines()]
         except EOFError:
-            return None
+            return []
 
 
-def set_tag(imgid, val):
+def set_not_cat(imgid):
     tags = load_tags()
-    tags[bytes(imgid, "utf-8")] = val
-    with open(settings.IMG_PKL, "wb") as file:
-        pickle.dump(tags, file)
+    if tags is None:
+        tags = []
+    tags.append(base64.b64decode(bytes(imgid, "utf-8")).decode().replace(settings.SALT, ""))
+    with open(settings.NOT_CAT, "w") as file:
+        file.write("\n".join(tags))

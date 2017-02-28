@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 import catflapsite.utils as kitty
-import os.path
-import pickle
 import catflap.settings as settings
 
 
@@ -20,17 +18,14 @@ def history(request):
     keys = [kitty.ImgUrl(k) for k in kitty.get_all_s3()]
     tags = kitty.load_tags()
     if tags is not None:
-        keys = [k for k in keys if k.id not in tags or tags[k.id]]
-    else:
-        with open(settings.IMG_PKL, "wb") as file:
-            pickle.dump({ k.id: True for k in keys }, file)
-    splitbysix = [keys[i:i + 6] for i in range(0, len(keys), 6)]
+        keys = [k for k in keys if k.filename not in tags]
+    keys = [k for k in keys if "not%20a%20cat" not in k.url]
     return render(request, "history.html", {
-        "imgrows": splitbysix
+        "imgs": keys
     })
 
 
 def notcat(request, img):
     if request.method == "POST":
-        kitty.set_tag(img, False)
+        kitty.set_not_cat(img)
         return redirect(history)
