@@ -11,7 +11,7 @@
                     <form method="post" action="{% url 'notcat' img.id %}">
                         {% csrf_token %}
                         <div style="text-align: right">
-                            <input type="image" src="{% static 'notcat.png' %}" width="20px" alt="not a cat"
+                            <input type="image" src="{% static 'images/notcat.png' %}" width="20px" alt="not a cat"
                                    title="this isn't a cat!"/>
                         </div>
                         <div style="position: relative; top: -20px; z-index: -100;">
