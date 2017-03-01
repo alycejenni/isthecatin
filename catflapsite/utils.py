@@ -7,27 +7,9 @@ from boto.s3.key import Key
 import os.path
 
 
-def localise(t):
-    london = pytz.timezone("Europe/London")
-    return london.localize(t)
-
-def now():
-    return localise(dt.now())
-
-def get_bucket():
-    s3 = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host = "s3.eu-west-2.amazonaws.com")
-    return s3.get_bucket(settings.IMAGE_BUCKET)
-
-def get_all_s3():
-    bucket = get_bucket()
-    return list(reversed(sorted([k for k in bucket.get_all_keys() if k.name.endswith(".jpg")], key = lambda x: x.last_modified)))
-
-def get_latest_s3():
-    return next(k for k in get_all_s3() if "not%20a%20cat" not in k.generate_url(expires_in=0, query_auth=False))
-
 class ImgUrl(object):
     def __init__(self, s3_obj):
-        self.url = s3_obj.generate_url(expires_in=0, query_auth=False)
+        self.url = s3_obj.generate_url(expires_in = 0, query_auth = False)
         self.time_taken = localise(dt.strptime(s3_obj.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
         self.filename = self.url.split("/")[-1]
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
@@ -36,12 +18,42 @@ class ImgUrl(object):
     def time_ago(self):
         return now() - self.time_taken
 
-    @property
-    def iscat(self):
+    def iscat(self, tags):
         try:
-            return load_tags()[self.id]
+            if tags is None:
+                tags = []
+            return "not%20a%20cat" not in self.url and self.filename not in tags
         except:
             return True  # always assume cat
+
+
+def localise(t):
+    london = pytz.timezone("Europe/London")
+    return london.localize(t)
+
+
+def now():
+    return localise(dt.now())
+
+
+def get_bucket():
+    s3 = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host = "s3.eu-west-2.amazonaws.com")
+    return s3.get_bucket(settings.IMAGE_BUCKET)
+
+
+def get_raw_keys():
+    bucket = get_bucket()
+    return list(reversed(
+        sorted([k for k in bucket.get_all_keys() if k.name.endswith(".jpg")], key = lambda x: x.last_modified)))
+
+
+def get_key_objects():
+    return [ImgUrl(k) for k in get_raw_keys()]
+
+
+def get_latest_s3():
+    tags = load_tags()
+    return next(k for k in get_key_objects() if k.iscat(tags))
 
 
 def get_key(b64img):
@@ -64,4 +76,4 @@ def set_not_cat(imgid):
         tags = []
     tags.append(base64.b64decode(bytes(imgid, "utf-8")).decode().replace(settings.SALT, ""))
     with open(settings.NOT_CAT, "w") as file:
-        file.write("\n".join(tags))
+        file.write("\n".join(sorted(tags)))
