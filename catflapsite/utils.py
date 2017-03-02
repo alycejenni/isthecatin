@@ -6,10 +6,12 @@ import base64
 from boto.s3.key import Key
 import os.path
 
+AWS_HEADERS = { "Cache-Control": "public, max-age=86400" }
+
 
 class ImgUrl(object):
     def __init__(self, s3_obj):
-        self.url = s3_obj.generate_url(expires_in = 0, query_auth = False)
+        self.url = s3_obj.generate_url(expires_in = 0, query_auth = False, response_headers = AWS_HEADERS)
         self.time_taken = localise(dt.strptime(s3_obj.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
         self.filename = self.url.split("/")[-1]
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
