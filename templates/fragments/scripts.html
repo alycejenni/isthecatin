@@ -1,0 +1,39 @@
+<!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-WRZFQ6B');</script>
+<!-- End Google Tag Manager -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $('#zoomcat').dialog({
+            autoOpen: false,
+            show: {
+                effect: 'fade',
+                duration: 500
+            },
+            hide: {
+                effect: 'fade',
+                duration: 500
+            }
+        });
+
+        $('.thumbnail').on('click', function () {
+            $('#zoomcat-body').empty();
+            $($(this).children('img').html()).appendTo('#zoomcat-body');
+            $('#zoomcat').dialog('open');
+        });
+    });
+</script>
