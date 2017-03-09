@@ -14,8 +14,8 @@
                             <input type="image" src="{% static 'images/notcat.png' %}" width="20px" alt="not a cat"
                                    title="this isn't a cat!"/>
                         </div>
-                        <a href="#">
-                            <div style="position: relative; top: -20px; z-index: -100;" class="thumbnail">
+                        <a href="#" class="zoomthumb">
+                            <div style="position: relative; top: -20px; z-index: -100;">
                                 <img alt="this is probably a picture of the cat's bum" class="img-thumbnail"
                                      src="{{ img.url }}"/></div>
                         </a>
@@ -25,8 +25,8 @@
             {% endfor %}
         </div>
     </div>
-    <div id="zoomcat">
-        <div id="zoomcat-body">
+    <div id="zoomcat" style="width: 100%; margin: 0 0 0 0;">
+        <div id="zoomcat-body" style="width: 100%" align="center">
         </div>
     </div>
 {% endblock %}

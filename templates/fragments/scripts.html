@@ -20,6 +20,9 @@
     $(function () {
         $('#zoomcat').dialog({
             autoOpen: false,
+            width: 'auto',
+            height: 'auto',
+            resizable: false,
             show: {
                 effect: 'fade',
                 duration: 500
@@ -30,10 +33,14 @@
             }
         });
 
-        $('.thumbnail').on('click', function () {
+        $('.zoomthumb').on('click', function () {
             $('#zoomcat-body').empty();
-            $($(this).children('img').html()).appendTo('#zoomcat-body');
-            $('#zoomcat').dialog('open');
+            $($(this).children('div').html()).appendTo('#zoomcat-body');
+            var zoomcat = $('#zoomcat');
+            var zoomcatimg = zoomcat.find('img');
+            zoomcatimg.removeClass('img-thumbnail');
+            zoomcatimg.addClass('img-responsive');
+            zoomcat.dialog('open');
         });
     });
 </script>
