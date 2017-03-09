@@ -10,7 +10,7 @@ class CatFood(Feed):
                   "hands, and other body parts (usually still attached to the rest of the body)."
 
     def items(self):
-        return kitty.get_key_objects()
+        return [k for k in kitty.get_key_objects() if k.iscat()]
 
     def item_title(self, item):
         return str(item.time_taken)
