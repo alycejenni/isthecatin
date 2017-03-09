@@ -1,7 +1,6 @@
 from django.contrib.syndication.views import Feed
 import catflapsite.utils as kitty
 
-
 class CatFood(Feed):
     title = "Cat Flap RSS"
     link = "/catfood/"
@@ -10,16 +9,13 @@ class CatFood(Feed):
                   "hands, and other body parts (usually still attached to the rest of the body)."
 
     def items(self):
-        return [k for k in kitty.get_key_objects() if k.iscat()]
+        return [k for k in kitty.get_key_objects() if k.iscat]
 
     def item_title(self, item):
         return str(item.time_taken)
 
     def item_description(self, item):
-        if item.iscat(kitty.load_tags()):
-            return "hi/bye cat"
-        else:
-            return "that's no cat"
+        return "is this a cat? if not, mark it as such by clicking the little cat icon on the history page!"
 
     def item_link(self, item):
         return item.url

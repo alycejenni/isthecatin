@@ -20,11 +20,10 @@ class ImgUrl(object):
     def time_ago(self):
         return now() - self.time_taken
 
-    def iscat(self, tags):
+    @property
+    def iscat(self):
         try:
-            if tags is None:
-                tags = []
-            return "not%20a%20cat" not in self.url and self.filename not in tags
+            return "not%20a%20cat" not in self.url
         except:
             return True  # always assume cat
 
@@ -54,8 +53,7 @@ def get_key_objects():
 
 
 def get_latest_s3():
-    tags = load_tags()
-    return next(k for k in get_key_objects() if k.iscat(tags))
+    return next(k for k in get_key_objects() if k.iscat)
 
 
 def get_key(b64img):
@@ -63,19 +61,8 @@ def get_key(b64img):
     return Key(get_bucket(), filename)
 
 
-def load_tags():
-    if os.path.isfile(settings.NOT_CAT):
-        try:
-            with open(settings.NOT_CAT, "r") as file:
-                return [l.strip() for l in file.readlines()]
-        except EOFError:
-            return []
-
-
 def set_not_cat(imgid):
-    tags = load_tags()
-    if tags is None:
-        tags = []
-    tags.append(base64.b64decode(bytes(imgid, "utf-8")).decode().replace(settings.SALT, ""))
-    with open(settings.NOT_CAT, "w") as file:
-        file.write("\n".join(sorted(tags)))
+    filename = base64.b64decode(bytes(imgid, "utf-8")).decode().replace(settings.SALT, "").split("?")[0]
+    bucket = get_bucket()
+    bucket.copy_key("not a cat/" + filename, settings.IMAGE_BUCKET, filename)
+    bucket.delete_key(filename)

@@ -11,8 +11,7 @@ def current(request):
 
 def history(request):
     keys = kitty.get_key_objects()
-    tags = kitty.load_tags()
-    keys = [k for k in keys if k.iscat(tags)]
+    keys = [k for k in keys if k.iscat]
     return render(request, "history.html", {
         "imgs": keys
     })
