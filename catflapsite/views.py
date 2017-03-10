@@ -19,5 +19,8 @@ def history(request):
 
 def notcat(request, img):
     if request.method == "POST":
-        kitty.set_not_cat(img)
+        try:
+            kitty.set_not_cat(img)
+        except Exception as e:
+            print(e)
         return redirect(history)

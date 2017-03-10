@@ -62,7 +62,10 @@ def get_key(b64img):
 
 
 def set_not_cat(imgid):
-    filename = base64.b64decode(bytes(imgid, "utf-8")).decode().replace(settings.SALT, "").split("?")[0]
+    bytesid = bytes(imgid, "utf-8")
+    b64id = base64.urlsafe_b64decode(bytesid)
+    decodeid = b64id.decode()
+    filename = decodeid.replace(settings.SALT, "").split("?")[0]
     bucket = get_bucket()
     bucket.copy_key("not a cat/" + filename, settings.IMAGE_BUCKET, filename)
     bucket.delete_key(filename)
