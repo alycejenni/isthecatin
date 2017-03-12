@@ -21,7 +21,7 @@ class CatFood(Feed):
         return "/history/"
 
     def item_enclosure_url(self, item):
-        return item.url
+        return item.url.split("?")[0]
 
     def item_enclosure_length(self, item):
         return item.size
