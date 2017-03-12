@@ -3,19 +3,19 @@ from datetime import datetime as dt
 import boto
 import catflap.settings as settings
 import base64
-from boto.s3.key import Key
-import os.path
 
-AWS_HEADERS = { "Cache-Control": "public, max-age=86400" }
+AWS_HEADERS = {
+    "Cache-Control": "public, max-age=86400"
+    }
 
 
 class ImgUrl(object):
-    def __init__(self, s3_obj):
-        self.url = s3_obj.generate_url(expires_in = 0, query_auth = False, response_headers = AWS_HEADERS)
-        self.time_taken = localise(dt.strptime(s3_obj.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
-        self.filename = self.url.split("/")[-1]
+    def __init__(self, key):
+        self.filename = key.name
+        self.time_taken = localise(dt.strptime(key.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
-        self.size = s3_obj.size
+        self.size = key.size
+        self.url = key.generate_url(expires_in=0, query_auth=False, response_headers=AWS_HEADERS)
 
     @property
     def time_ago(self):
@@ -29,6 +29,39 @@ class ImgUrl(object):
             return True  # always assume cat
 
 
+class S3Conn(object):
+    def __init__(self):
+        self.client = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host="s3.eu-west-2.amazonaws.com")
+        self.bucket = self.client.get_bucket(settings.IMAGE_BUCKET)
+
+    @property
+    def raw_keys(self):
+        return list(reversed(
+            sorted([k for k in self.bucket.get_all_keys() if k.name.endswith(".jpg")], key=lambda x: x.last_modified)))
+
+    @property
+    def custom_keys(self):
+        return [ImgUrl(k) for k in self.raw_keys]
+
+    @property
+    def cats(self):
+        return [k for k in self.custom_keys if k.iscat]
+
+    @property
+    def latest_cat(self):
+        return next(k for k in self.custom_keys if k.iscat)
+
+    def get_key(self, b64imgid):
+        filename = decode_filename(b64imgid)
+        return self.bucket.get_key(filename, validate=False)
+
+    def set_not_cat(self, b64imgid):
+        filename = decode_filename(b64imgid)
+        new_key = "not a cat/" + filename
+        self.bucket.copy_key(new_key, settings.IMAGE_BUCKET, filename)
+        self.bucket.delete_key(filename)
+
+
 def localise(t):
     london = pytz.timezone("Europe/London")
     return london.localize(t)
@@ -38,35 +71,12 @@ def now():
     return localise(dt.now())
 
 
-def get_bucket():
-    s3 = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host = "s3.eu-west-2.amazonaws.com")
-    return s3.get_bucket(settings.IMAGE_BUCKET)
-
-
-def get_raw_keys():
-    bucket = get_bucket()
-    return list(reversed(
-        sorted([k for k in bucket.get_all_keys() if k.name.endswith(".jpg")], key = lambda x: x.last_modified)))
-
-
-def get_key_objects():
-    return [ImgUrl(k) for k in get_raw_keys()]
-
-
-def get_latest_s3():
-    return next(k for k in get_key_objects() if k.iscat)
-
-
-def get_key(b64img):
-    filename = base64.b64decode(b64img).decode().replace(settings.SALT, "")
-    return Key(get_bucket(), filename)
-
-
-def set_not_cat(imgid):
-    bytesid = bytes(imgid, "utf-8")
+def decode_filename(b64imgid):
+    bytesid = bytes(b64imgid, "utf-8")
     b64id = base64.urlsafe_b64decode(bytesid)
     decodeid = b64id.decode()
     filename = decodeid.replace(settings.SALT, "").split("?")[0]
-    bucket = get_bucket()
-    bucket.copy_key("not a cat/" + filename, settings.IMAGE_BUCKET, filename)
-    bucket.delete_key(filename)
+    return filename
+
+
+conn = S3Conn()

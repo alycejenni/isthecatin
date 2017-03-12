@@ -1,19 +1,16 @@
 from django.shortcuts import render, redirect
-import catflapsite.utils as kitty
+from catflapsite.utils import conn as kitty
 
 
 def current(request):
-    key = kitty.get_latest_s3()
     return render(request, "main.html", {
-        "img": key
+        "img": kitty.latest_cat
     })
 
 
 def history(request):
-    keys = kitty.get_key_objects()
-    keys = [k for k in keys if k.iscat]
     return render(request, "history.html", {
-        "imgs": keys
+        "imgs": kitty.cats
     })
 
 

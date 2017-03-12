@@ -1,5 +1,5 @@
 from django.contrib.syndication.views import Feed
-import catflapsite.utils as kitty
+from catflapsite.utils import conn as kitty
 
 class CatFood(Feed):
     title = "Cat Flap RSS"
@@ -9,7 +9,7 @@ class CatFood(Feed):
                   "hands, and other body parts (usually still attached to the rest of the body)."
 
     def items(self):
-        return [k for k in kitty.get_key_objects() if k.iscat]
+        return kitty.cats
 
     def item_title(self, item):
         return str(item.time_taken)
