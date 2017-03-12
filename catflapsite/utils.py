@@ -15,6 +15,7 @@ class ImgUrl(object):
         self.time_taken = localise(dt.strptime(s3_obj.last_modified, "%Y-%m-%dT%H:%M:%S.000Z"))
         self.filename = self.url.split("/")[-1]
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
+        self.size = s3_obj.size
 
     @property
     def time_ago(self):
