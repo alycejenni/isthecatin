@@ -29,7 +29,7 @@ class CatFood(Feed):
         return "/history"
 
     def item_guid(self, item):
-        return item.filename
+        return item.url.split("?")[0]
 
     def item_enclosure_url(self, item):
         return item.url.split("?")[0]
