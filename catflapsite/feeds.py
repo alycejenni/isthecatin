@@ -1,7 +1,15 @@
 from django.contrib.syndication.views import Feed
+from django.utils.feedgenerator import Rss201rev2Feed
 from catflapsite.utils import conn as kitty
 
+class WhiskasBox(Rss201rev2Feed):
+    def root_attributes(self):
+        attrs = super(WhiskasBox, self).root_attributes()
+        attrs["xmlns:media"] = "http://search.yahoo.com/mrss/"
+        return attrs
+
 class CatFood(Feed):
+    feed_type = WhiskasBox
     title = "Cat Flap RSS"
     link = "/catfood/"
     description = "A list of pictures, generally alternating between my cat's face and bum," \
