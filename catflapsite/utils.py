@@ -16,6 +16,7 @@ class ImgUrl(object):
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
         self.url = key.generate_url(expires_in=0, query_auth=False, response_headers=AWS_HEADERS)
+        self.httpurl = key.generate_url(expires_in=0, query_auth=False, force_http = True)
 
     @property
     def time_ago(self):
