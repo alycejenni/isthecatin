@@ -26,7 +26,10 @@ class CatFood(Feed):
         return "is this a cat? if not, mark it as such by clicking the little cat icon on the history page!"
 
     def item_link(self, item):
-        return item.url.split("?")[0]
+        return "/history"
+
+    def item_guid(self, item):
+        return item.filename
 
     def item_enclosure_url(self, item):
         return item.url.split("?")[0]
