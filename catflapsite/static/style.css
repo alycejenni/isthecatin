@@ -1,6 +1,12 @@
 .h1 {
-    font-family: 'Pangolin';
-    font-size: 60px;
+        font-family: 'Pangolin';
+        font-size: 60px;
+    }
+
+@media all and (max-width: 400px) {
+    .h1 {
+        font-size: 40px;
+    }
 }
 
 a.activepage {
@@ -17,5 +23,19 @@ body {
 }
 
 #id_creature_type, #id_url, #id_creature_name {
-    width: 80%;
+    width: 50%;
+}
+
+.padded-row {
+    margin-bottom: 10px;
+}
+
+.question {
+    text-align: right;
+    margin-left: auto;
+}
+
+.answer {
+    text-align: left;
+    margin-right: auto;
 }

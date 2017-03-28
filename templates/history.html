@@ -14,13 +14,13 @@
                                 <td>
                                     <form method="post" action="{% url 'notcat' img.id %}">{% csrf_token %}
                                         <input type="image" src="{% static 'images/notcat.png' %}" width="20px"
-                                               alt="not a cat"
+                                               alt="button to mark as not a cat"
                                                title="this isn't a cat!"/></form>
                                 </td>
                                 <td>
                                     <form method="post" action="{% url 'ffsganja' img.id %}">{% csrf_token %}
                                         <input type="image" src="{% static 'images/skull-icon.png' %}" width="20px"
-                                               alt="critter alert"
+                                               alt="button to mark image as containing possible casualty"
                                                title="he's got something!"/></form>
                                 </td>
                             </tr>
