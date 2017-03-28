@@ -1,0 +1,43 @@
+{% extends "basepage.html" %}
+{% load static %}
+{% block title %}
+    what has the cat dragged in now?
+{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <img src="{{ img.url }}" class="img-rounded img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    {{ form.url }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: right;">
+                    What is it?
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align: left;">
+                    {{ form.creature_type }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: right;">
+                    What did we call it?
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align: left;">
+                    {{ form.creature_name }}
+                </div>
+            </div>
+            <div class="row">
+                <hr>
+                <input align="center" class="grey-btn" type="submit" value="submit"/>
+                <hr>
+            </div>
+        </div>
+    </form>
+{% endblock %}

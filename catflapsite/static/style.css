@@ -15,3 +15,7 @@ body {
     font-family: 'Lato', sans-serif;
     text-align: center;
 }
+
+#id_creature_type, #id_url, #id_creature_name {
+    width: 80%;
+}
