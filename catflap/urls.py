@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^catfood$', feeds.CatFood(), name = "catfood"),
     url(r'^rip$', site.casualties, name = "rip"),
     url(r'^ffsganja/(?P<img>.*)$', site.createcasualty, name = "ffsganja"),
+    url(r'^submitcasualty$', site.submitcasualty, name="submitcasualty")
 ]

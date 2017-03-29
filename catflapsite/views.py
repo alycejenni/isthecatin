@@ -34,10 +34,12 @@ def submitcasualty(request):
         form = CreateCasualty(request.POST)
         if form.is_valid():
             form.save()
+            print("saved")
+    return redirect("ffsganja/")
 
 
 def createcasualty(request, img):
-    if request.method == "POST":
+    if request.method == "POST" and img:
         img = ImgUrl(kitty.get_key(img))
         form = CreateCasualty(request, initial = { 'url': img.url })
         return render(request, "createcasualty.html", { "form": form, "img": img })
