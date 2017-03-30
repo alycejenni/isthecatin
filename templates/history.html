@@ -8,19 +8,30 @@
         <div class="row">
             {% for img in imgs %}
                 <div class="col-md-4 col-xs-6">
-                    <form method="post" action="{% url 'notcat' img.id %}">
-                        {% csrf_token %}
-                        <div style="text-align: right;">
-                            <input type="image" src="{% static 'images/notcat.png' %}" width="20px" alt="not a cat"
-                                   title="this isn't a cat!"/>
-                        </div>
-                        <a href="#" class="zoomthumb">
-                            <div style="position: relative; top: -20px; z-index: -100;">
-                                <img alt="this is probably a picture of the cat's bum" class="img-thumbnail"
-                                     src="{{ img.url }}"/></div>
-                        </a>
-                        <p>{{ img.time_taken }}</p>
-                    </form>
+                    <div style="text-align: right;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <form method="post" action="{% url 'notcat' img.id %}">{% csrf_token %}
+                                        <input type="image" src="{% static 'images/notcat.png' %}" width="20px"
+                                               alt="button to mark as not a cat"
+                                               title="this isn't a cat!"/></form>
+                                </td>
+                                <td>
+                                    <form method="post" action="{% url 'ffsganja' img.id %}">{% csrf_token %}
+                                        <input type="image" src="{% static 'images/skull-icon.png' %}" width="20px"
+                                               alt="button to mark image as containing possible casualty"
+                                               title="he's got something!"/></form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a href="#" class="zoomthumb">
+                        <div style="position: relative; top: -20px; z-index: -100;">
+                            <img alt="this is probably a picture of the cat's bum" class="img-thumbnail"
+                                 src="{{ img.url }}"/></div>
+                    </a>
+                    <p>{{ img.time_taken }}</p>
                 </div>
             {% endfor %}
         </div>

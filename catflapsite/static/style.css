@@ -3,6 +3,12 @@
     font-size: 60px;
 }
 
+@media all and (max-width: 400px) {
+    .h1 {
+        font-size: 40px;
+    }
+}
+
 a.activepage {
     color: black;
 }
@@ -14,4 +20,112 @@ a.inactivepage {
 body {
     font-family: 'Lato', sans-serif;
     text-align: center;
+}
+
+#id_creature_type, #id_url, #id_creature_name, #id_additional_image, #id_guilty_cat {
+    width: 60%;
+}
+
+#id_caughtintheact, #id_additional, #id_guilty {
+    font-style: italic;
+    color: #bbb;
+}
+
+.padded-row {
+    margin-bottom: 10px;
+}
+
+.question {
+    text-align: right;
+    margin-left: auto;
+}
+
+.answer {
+    text-align: left;
+    margin-right: auto;
+}
+
+.toggle-cat {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+
+.toggle-cat + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+input.toggle-cat + label {
+    padding: 2px;
+    width: 60px;
+    height: 30px;
+    background-color: #8ce196;
+    border-radius: 30px;
+    transition: background 0.4s;
+}
+
+/*the switch outline when checked*/
+input.toggle-cat:checked + label {
+    background-color: #A23E48;
+}
+
+input.toggle-cat + label:before,
+input.toggle-cat + label:after {
+    display: block;
+    position: absolute;
+}
+
+/* background always */
+input.toggle-cat + label:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #eeeeee;
+    border-radius: 30px;
+    font-family: 'Lato', sans-serif;
+    padding: 4px;
+    font-size: 11px;
+    font-weight: normal;
+    font-variant: small-caps;
+    text-align: right;
+    content: "alive";
+    transition: background 0.4s;
+}
+
+input.toggle-cat:checked + label:before {
+    content: "dead";
+    text-align:left;
+}
+
+input.toggle-cat + #lblKD:before {
+    content: "idk";
+}
+
+input.toggle-cat:checked + #lblKD:before {
+    content: "yup";
+    text-align:left;
+}
+
+/* the circle when unchecked */
+input.toggle-cat + label:after {
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    width: 22px;
+    background-color: #8ce196;
+    border-radius: 26px;
+    transition: margin 0.4s, background 0.4s;
+    content: "";
+}
+
+/* the circle when checked */
+input.toggle-cat:checked + label:after {
+    margin-left: 30px;
+    background-color: #A23E48;
 }

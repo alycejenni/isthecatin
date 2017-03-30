@@ -1,6 +1,12 @@
 from django.db import models
 
 
-class Image(models.Model):
-    imgdata = models.BinaryField()
-    timetaken = models.DateTimeField()
+class Casualty(models.Model):
+    url = models.URLField()
+    time_taken = models.DateTimeField()
+    creature_type = models.CharField(max_length = 100)
+    creature_name = models.CharField(max_length = 100)
+    doa = models.BooleanField()
+    known_deceased = models.BooleanField()
+    additional_image = models.URLField()
+    guilty_cat = models.URLField()
