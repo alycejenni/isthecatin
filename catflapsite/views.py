@@ -1,7 +1,11 @@
+import base64
+
 from django.shortcuts import render, redirect
 from .utils import conn as kitty
 from .utils import ImgUrl
 from .forms import CreateCasualty
+from .models import Casualty
+from django.core import serializers
 
 
 def current(request):
@@ -26,7 +30,15 @@ def notcat(request, img):
 
 
 def casualties(request):
-    return render(request, "rip.html")
+    animal_objects = Casualty.objects.all()
+
+    animals = []
+    for a in animal_objects:
+        animals.append({
+            "object": a,
+            "encoded": base64.b64encode((serializers.serialize('json', animal_objects)).encode())
+            })
+    return render(request, "rip.html", {"animals": animals})
 
 
 def submitcasualty(request):

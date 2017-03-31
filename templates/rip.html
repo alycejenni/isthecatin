@@ -3,18 +3,30 @@
 {% block title %}
     what has the cat dragged in?
 {% endblock %}
+{% block scripts %}
+    <script src="{% static "javascript/rip.js" %}" type="text/javascript"></script>
+{% endblock %}
 {% block content %}
     <div class="container">
-    <div class="row">
-        <div class="col-md-12 col-xs-12" style="height: 100px; overflow-y: hidden;">
-            {% lorem %}
+        <div class="row">
+            <div class="col-md-12 col-xs-12" style="height: 100px; overflow-y: hidden; white-space: nowrap">
+                {% for animal in animals %}
+                    <img src="{{ animal.object.url }}"
+                         class="img-thumbnail {% if animal.object.known_deceased %}ded{% else %}notded{% endif %}"
+                         style="max-height: 100px; margin: 0 5px" onClick="refreshContent('{{ animal.encoded }}')"/>
+                {% endfor %}
+            </div>
         </div>
-    </div>
         <hr>
-    <div class="row">
-        <div class="col-md-4">
-            {% lorem 3 p %}
+        <div class="row">
+            <div class="col-md-4">
+                <span class="h1" id="obit_header"></span>
+                <span id="obit_desc"></span>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <img src="" class="img-responsive center-block" id="critterpicture">
+                <img src="" class="img-responsive center-block" id="guiltycat">
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}
