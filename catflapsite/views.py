@@ -39,11 +39,7 @@ def submitcasualty(request):
 
 
 def createcasualty(request, img):
-    if request.method == "POST" and img:
-        img = ImgUrl(kitty.get_key(img))
-        form = CreateCasualty(request, initial = { 'url': img.url })
-        return render(request, "createcasualty.html", { "form": form, "img": img })
-    elif img:
+    if img is not None:
         img = ImgUrl(kitty.get_key(img))
         form = CreateCasualty(initial = { 'url': img.url })
         return render(request, "createcasualty.html", { "form": form, "img": img })

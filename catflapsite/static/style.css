@@ -22,7 +22,7 @@ body {
     text-align: center;
 }
 
-#id_creature_type, #id_url, #id_creature_name, #id_additional_image, #id_guilty_cat {
+#id_creature_type, #id_url, #id_creature_name, #id_additional_image, #id_guilty_cat, #id_time_taken {
     width: 60%;
 }
 
@@ -99,7 +99,7 @@ input.toggle-cat + label:before {
 
 input.toggle-cat:checked + label:before {
     content: "dead";
-    text-align:left;
+    text-align: left;
 }
 
 input.toggle-cat + #lblKD:before {
@@ -108,7 +108,7 @@ input.toggle-cat + #lblKD:before {
 
 input.toggle-cat:checked + #lblKD:before {
     content: "yup";
-    text-align:left;
+    text-align: left;
 }
 
 /* the circle when unchecked */
