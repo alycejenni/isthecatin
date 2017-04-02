@@ -131,13 +131,32 @@ input.toggle-cat:checked + label:after {
 }
 
 .ded {
+    color: #A23E48;
+}
+
+img.ded {
     border-color: #A23E48;
     background-color: #A23E48;
     cursor: pointer;
 }
 
 .notded {
+    color: #8ce196;
+}
+
+img.notded {
     border-color: #8ce196;
     background-color: #8ce196;
     cursor: pointer;
+}
+
+.img-blur {
+    filter: blur(10px);
+    display: inline;
+    margin: 20px 0px;
+    transition: 200ms filter linear;
+}
+
+.img-blur:hover {
+    filter: blur(0px);
 }

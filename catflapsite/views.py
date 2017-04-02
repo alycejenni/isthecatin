@@ -47,7 +47,7 @@ def submitcasualty(request):
         if form.is_valid():
             form.save()
             print("saved")
-    return redirect("ffsganja/")
+    return redirect("rip")
 
 
 def createcasualty(request, img):
