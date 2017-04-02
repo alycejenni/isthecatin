@@ -40,17 +40,11 @@ function refreshContent(animalb64){
     obitHeader.text(obitTitle);
     $('#obit_desc').text(obitDesc);
 
-    if (animal.url !== ""){
-        $('#catflappicture').attr("src", animal.url);
-    }
+    $('#catflappicture').attr("src", animal.url);
 
-    if (animal.additional_image !== ""){
-        $('#critterpicture').attr("src", animal.additional_image);
-    }
+    $('#critterpicture').attr("src", animal.additional_image);
 
-    if (animal.guilty_cat !== ""){
-        $('#guiltycat').attr("src", animal.guilty_cat)
-    }
+    $('#guiltycat').attr("src", animal.guilty_cat);
 
 
 }
