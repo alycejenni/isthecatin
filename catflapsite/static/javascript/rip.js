@@ -33,7 +33,7 @@ function refreshContent(animalb64){
     }
     else {
         obitHeader.addClass("notded");
-        obitTitle = "congratulations, " + animalName;
+        obitTitle = "well done, " + animalName;
         obitDesc = "you actually left the house alive, though we apologise for the severe mental and physical trauma inflicted on you by the fluffy menace"
     }
 

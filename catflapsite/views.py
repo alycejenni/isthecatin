@@ -36,7 +36,7 @@ def casualties(request):
     for a in animal_objects:
         animals.append({
             "object": a,
-            "encoded": base64.b64encode((serializers.serialize('json', animal_objects)).encode())
+            "encoded": base64.b64encode((serializers.serialize('json', [a])).encode())
             })
     return render(request, "rip.html", {"animals": animals})
 
