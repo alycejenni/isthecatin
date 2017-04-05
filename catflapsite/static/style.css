@@ -1,3 +1,5 @@
+body {  padding-bottom: 70px;  }
+
 h1, .h1 {
     font-family: 'Pangolin';
     font-size: 60px;
@@ -159,4 +161,20 @@ img.notded {
 
 .img-blur:hover {
     filter: blur(0px);
+}
+
+/* Navbar Styling */
+
+.navbar-default {
+    border: 0;
+    background-color: #2F373F !important;
+}
+
+.navbar-nav li a {  color: #B7BFC7 !important;  }
+
+.navbar-nav li a:hover:before {
+    content: '\f1b0';
+    font-family: 'fontawesome', sans-serif;
+    position: absolute;
+    left: -1px;
 }
