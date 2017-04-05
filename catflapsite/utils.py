@@ -1,6 +1,6 @@
 import pytz
 from datetime import datetime as dt
-import boto
+import boto.s3.connection
 import catflap.settings as settings
 import base64
 import re
@@ -34,7 +34,7 @@ class ImgUrl(object):
 
 class S3Conn(object):
     def __init__(self):
-        self.client = boto.connect_s3(settings.AWS_KEY, settings.AWS_SECRET, host = "s3.eu-west-2.amazonaws.com")
+        self.client = boto.s3.connect_to_region("eu-west-2", aws_access_key_id = settings.AWS_KEY, is_secure = False, aws_secret_access_key = settings.AWS_SECRET, calling_format = boto.s3.connection.OrdinaryCallingFormat())
         self.bucket = self.client.get_bucket(settings.IMAGE_BUCKET)
 
     @property
