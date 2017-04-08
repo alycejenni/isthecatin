@@ -166,15 +166,25 @@ img.notded {
 /* Navbar Styling */
 
 .navbar-default {
-    border: 0;
-    background-color: #2F373F !important;
+    border-top: 1px solid #eee;
+    background-color: #fff !important;
 }
 
-.navbar-nav li a {  color: #B7BFC7 !important;  }
+.navbar-nav li a {  color: #ccc !important;  }
 
 .navbar-nav li a:hover:before {
     content: '\f1b0';
+    color: lightpink !important;
     font-family: 'fontawesome', sans-serif;
     position: absolute;
     left: -1px;
 }
+
+/*
+
+Dark Colour Scheme {
+    color: #B7BFC7;
+    background-color: #2F373F;
+}
+
+*/
