@@ -256,15 +256,15 @@ h2.in-out-msg {
 }
 
 .navbar-nav li a.icon-history:hover:before {
-    content: '\f073';
+    content: '\f1da';
 }
 
 .navbar-nav li a.icon-rip:hover:before {
-    content: '\f073';
+    content: '\f119';
 }
 
 .navbar-nav li a.icon-feed:hover:before {
-    content: '\f013';
+    content: '\f022';
 }
 
 .navbar-nav li a.icon-github:hover:before {
