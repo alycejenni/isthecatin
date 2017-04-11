@@ -165,14 +165,14 @@ img.notded {
 
 body {
     padding-top: 70px;
-    background: #0097a7;
+    background: #078199;
 }
 
 /* Navbar Styling */
 
 .navbar-default {
     border: 0;
-    background-color: #0097a7 !important;
+    background-color: #0896B2 !important;
 }
 
 .navbar-nav li a,
@@ -184,16 +184,18 @@ body {
     text-transform: uppercase;
 }
 
-.navbar-nav li a:hover {
-    border-bottom: 5px solid #fff;
+.navbar-nav li a:hover,
+.navbar-brand:hover {
+    height: 50px;
+    border-bottom: 5px solid #066B7F;
 }
 
 .navbar-nav li a:hover:before {
     content: '\f1b0';
-    color: #fff !important;
-    /*font-size: 22px;*/
+    color: #066B7F !important;
     font-family: 'fontawesome', sans-serif;
     position: absolute;
-    -webkit-transform: rotate(-10deg);
+    -webkit-transform: rotate(-11deg);
+    transform: rotate(-11deg);
     left: -11px;
 }
