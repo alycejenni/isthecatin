@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="/">Is the cat in?</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'current' %}">Home</a></li>
+        <li><a href="{% url 'history' %}">History</a></li>
+        <li><a href="{% url 'rip' %}">Graveyard</a></li>
+        <li><a href="{% url 'catfood' %}" target="_blank">Feed</a></li>
+        <li><a href="https://github.com/alycejenni/isthecatin" target="_blank">Git</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

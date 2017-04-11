@@ -1,13 +1,13 @@
-h1, .h1 {
-    font-family: 'Pangolin';
-    font-size: 60px;
-}
+/*h1, .h1 {*/
+    /*font-family: 'Pangolin';*/
+    /*font-size: 60px;*/
+/*}*/
 
-@media all and (max-width: 400px) {
-    h1, .h1 {
-        font-size: 40px;
-    }
-}
+/*@media all and (max-width: 400px) {*/
+    /*h1, .h1 {*/
+        /*font-size: 40px;*/
+    /*}*/
+/*}*/
 
 a.activepage {
     color: black;
@@ -19,7 +19,6 @@ a.inactivepage {
 
 body {
     font-family: 'Lato', sans-serif;
-    text-align: center;
 }
 
 #id_creature_type, #id_url, #id_creature_name, #id_additional_image, #id_guilty_cat, #id_time_taken {
@@ -159,4 +158,94 @@ img.notded {
 
 .img-blur:hover {
     filter: blur(0px);
+}
+
+/* Sam's CSS */
+
+/*
+
+Colours:
+
+Light: #0896B2
+Medium: #078199
+Dark: #066B7F
+
+*/
+
+/* Base Styling */
+
+body {
+    padding-top: 70px;
+    background: #078199;
+}
+
+/* Cat Image */
+
+.cat-img {
+    margin-top: 30px;
+    border: 5px dashed #066B7F;
+}
+
+/* In/Out Message */
+
+.in-out-msg {
+    text-align: center;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1.in-out-msg {
+    margin-top: 30px;
+    font-size: 48px;
+}
+
+h2.in-out-msg {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+/* Navbar Styling */
+
+.navbar-default {
+    border: 0;
+    background-color: #0896B2 !important;
+}
+
+.navbar-toggle {
+    color: #fff;
+    border-color: #078199 !important;
+    background-color: #078199;
+    border-radius: 999px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:active {
+    border-color: #066B7F !important;
+    background-color: #066B7F;
+}
+
+.navbar-nav li a,
+.navbar-brand {
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.navbar-nav li a:hover,
+.navbar-brand:hover {
+    height: 50px;
+    border-bottom: 5px solid #066B7F;
+}
+
+.navbar-nav li a:hover:before {
+    content: '\f1b0';
+    color: #066B7F !important;
+    font-family: 'fontawesome', sans-serif;
+    position: absolute;
+    -webkit-transform: rotate(-11deg);
+    transform: rotate(-11deg);
+    left: -11px;
 }
