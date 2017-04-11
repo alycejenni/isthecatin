@@ -211,6 +211,21 @@ h2.in-out-msg {
     background-color: #0896B2 !important;
 }
 
+.navbar-toggle {
+    color: #fff;
+    border-color: #078199 !important;
+    background-color: #078199;
+    border-radius: 999px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:active {
+    border-color: #066B7F !important;
+    background-color: #066B7F;
+}
+
 .navbar-nav li a,
 .navbar-brand {
     font-size: 26px;
