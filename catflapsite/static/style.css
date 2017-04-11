@@ -19,7 +19,6 @@ a.inactivepage {
 
 body {
     font-family: 'Lato', sans-serif;
-    text-align: center;
 }
 
 #id_creature_type, #id_url, #id_creature_name, #id_additional_image, #id_guilty_cat, #id_time_taken {
@@ -190,10 +189,19 @@ body {
 /* In/Out Message */
 
 .in-out-msg {
-    margin-top: 30px;
+    text-align: center;
     color: #fff;
-    font-size: 48px;
     font-family: 'Montserrat', sans-serif;
+}
+
+h1.in-out-msg {
+    margin-top: 30px;
+    font-size: 48px;
+}
+
+h2.in-out-msg {
+    margin-top: 15px;
+    font-size: 24px;
 }
 
 /* Navbar Styling */
