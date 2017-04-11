@@ -25,6 +25,26 @@ class ImgUrl(object):
         return now() - self.time_taken
 
     @property
+    def time_ago_str(self):
+        timeago = self.time_ago
+        days = timeago.days
+        hours = math.floor(timeago.seconds / 3600)
+        if hours > 1:
+            hp = "s"
+        else:
+            hp = ""
+        minutes = math.floor((timeago.seconds - (hours * 3600)) / 60)
+        if minutes > 1:
+            mp = "s"
+        else:
+            mp = ""
+
+        if days < 1:
+            return f"{hours} hour{hp} and {minutes} minute{mp}"
+        else:
+            return f"{days} days, {hours} hour{hp}, and {minutes} minute{mp}"
+
+    @property
     def iscat(self):
         try:
             return "not%20a%20cat" not in self.url
