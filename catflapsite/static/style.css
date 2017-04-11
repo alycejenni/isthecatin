@@ -1,13 +1,13 @@
-h1, .h1 {
-    font-family: 'Pangolin';
-    font-size: 60px;
-}
+/*h1, .h1 {*/
+    /*font-family: 'Pangolin';*/
+    /*font-size: 60px;*/
+/*}*/
 
-@media all and (max-width: 400px) {
-    h1, .h1 {
-        font-size: 40px;
-    }
-}
+/*@media all and (max-width: 400px) {*/
+    /*h1, .h1 {*/
+        /*font-size: 40px;*/
+    /*}*/
+/*}*/
 
 a.activepage {
     color: black;
@@ -166,6 +166,14 @@ img.notded {
 body {
     padding-top: 70px;
     background: #078199;
+}
+
+/* In/Out Message */
+
+.in-out-message {
+    color: #fff;
+    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Navbar Styling */
