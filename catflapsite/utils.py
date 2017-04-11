@@ -10,6 +10,10 @@ AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
 }
 
+INSIDE = 1
+OUTSIDE = 0
+SCHRODINGER = 2
+
 
 class ImgUrl(object):
     def __init__(self, key):
@@ -20,6 +24,14 @@ class ImgUrl(object):
         self.size = key.size
         self.url = key.generate_url(expires_in = 0, query_auth = False, response_headers = AWS_HEADERS)
         self.httpurl = key.generate_url(expires_in = 0, query_auth = False, force_http = True)
+        if "-" not in key.name:
+            self.direction = SCHRODINGER
+        else:
+            if key.name.split("-")[-1] == "1.jpg":
+                self.direction = INSIDE
+            else:
+                self.direction = OUTSIDE
+
 
     @property
     def time_ago(self):
