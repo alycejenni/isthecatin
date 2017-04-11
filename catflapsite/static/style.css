@@ -1,5 +1,3 @@
-body {  padding-bottom: 70px;  }
-
 h1, .h1 {
     font-family: 'Pangolin';
     font-size: 60px;
@@ -163,28 +161,39 @@ img.notded {
     filter: blur(0px);
 }
 
+/* Base Styling */
+
+body {
+    padding-top: 70px;
+    background: #0097a7;
+}
+
 /* Navbar Styling */
 
 .navbar-default {
-    border-top: 1px solid #eee;
-    background-color: #fff !important;
+    border: 0;
+    background-color: #0097a7 !important;
 }
 
-.navbar-nav li a {  color: #ccc !important;  }
+.navbar-nav li a,
+.navbar-brand {
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff !important;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.navbar-nav li a:hover {
+    border-bottom: 5px solid #fff;
+}
 
 .navbar-nav li a:hover:before {
     content: '\f1b0';
-    color: lightpink !important;
+    color: #fff !important;
+    /*font-size: 22px;*/
     font-family: 'fontawesome', sans-serif;
     position: absolute;
-    left: -1px;
+    -webkit-transform: rotate(-10deg);
+    left: -11px;
 }
-
-/*
-
-Dark Colour Scheme {
-    color: #B7BFC7;
-    background-color: #2F373F;
-}
-
-*/
