@@ -168,9 +168,17 @@ body {
     background: #078199;
 }
 
+/* Cat Image */
+
+.cat-img {
+    margin-top: 15px;
+    border: 5px dashed #066B7F;
+}
+
 /* In/Out Message */
 
-.in-out-message {
+.in-out-msg {
+    margin-top: 30px;
     color: #fff;
     font-size: 48px;
     font-family: 'Montserrat', sans-serif;
