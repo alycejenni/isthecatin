@@ -4,18 +4,13 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                <p>{{ img.direction }}</p>
-            </div>
-    </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <img alt="this is probably a picture of the cat's bum" src="{{ img.url }}" class="img-responsive cat-img"/>
             </div>
             <div class="col-md-3" style="color: #fff;">
                 <!--<h3>Foto facts</h3>-->
-                <!--<p>This photo was taken xx days, xx hours and xx minutes ago</p>-->
+                <!--<p>This photo was taken {{ img.time_ago_str }} ago</p>-->
             </div>
         </div>
         <!--<div class="row">-->
@@ -23,8 +18,18 @@
                 <!--<p>this was taken {{ img.time_ago_str }} ago</p>--> 
             <!--</div>-->
         <!--</div>-->
-        <h1 class="in-out-msg">Looks like he's in <i class="fa fa-check"></i></h1>
-        <h2 class="in-out-msg">What a good boy</h2>
+        {% if img.direction == 0 %}
+            {#if the cat is out#}
+            <h1 class="in-out-msg">Out murdering rabbits <i class="fa fa-ambulance"></i></h1>
+            <h2 class="in-out-msg">What a good boy</h2>
+        {% elif img.direction == 1 %}
+            <h1 class="in-out-msg">Looks like he's in <i class="fa fa-check"></i></h1>
+            <h2 class="in-out-msg">What a good boy</h2>
+        {% else %}
+            {#if he's being a quantum boy#}
+            <h1 class="in-out-msg">Fuck knows where he is <i class="fa fa-bathtub"></i></h1>
+            <h2 class="in-out-msg">What a good boy</h2>
+        {% endif %}
         <!--<h1 class="in-out-message">Looks like he's out <i class="fa fa-times"></i></h1>-->
     </div>
 {% endblock %}
