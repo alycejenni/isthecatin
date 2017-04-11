@@ -33,24 +33,18 @@ function refreshContent(animalb64){
     }
     else {
         obitHeader.addClass("notded");
-        obitTitle = "congratulations, " + animalName;
+        obitTitle = "well done, " + animalName;
         obitDesc = "you actually left the house alive, though we apologise for the severe mental and physical trauma inflicted on you by the fluffy menace"
     }
 
     obitHeader.text(obitTitle);
     $('#obit_desc').text(obitDesc);
 
-    if (animal.url !== ""){
-        $('#catflappicture').attr("src", animal.url);
-    }
+    $('#catflappicture').attr("src", animal.url);
 
-    if (animal.additional_image !== ""){
-        $('#critterpicture').attr("src", animal.additional_image);
-    }
+    $('#critterpicture').attr("src", animal.additional_image);
 
-    if (animal.guilty_cat !== ""){
-        $('#guiltycat').attr("src", animal.guilty_cat)
-    }
+    $('#guiltycat').attr("src", animal.guilty_cat);
 
 
 }
