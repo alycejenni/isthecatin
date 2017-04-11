@@ -4,6 +4,7 @@ import boto.s3.connection
 import catflap.settings as settings
 import base64
 import re
+import math
 
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
