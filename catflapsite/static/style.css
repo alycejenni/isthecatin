@@ -155,6 +155,13 @@ Light: #0896B2
 Medium: #078199
 Dark: #066B7F
 
+---
+
+Light Red: #ED5565
+Dark Red: #DA4453
+Light Yellow: #FFCE54
+Dark Yellow: #FCBB42
+
 */
 
 /* Base Styling */
@@ -162,14 +169,14 @@ Dark: #066B7F
 body {
     font-family: 'Montserrat', sans-serif;
     padding-top: 70px;
-    background: #078199;
+    background: #ED5565;
 }
 
 /* Cat Image */
 
 .cat-img {
     margin-top: 30px;
-    border: 5px dashed #066B7F;
+    border: 5px dashed #FCBB42;
 }
 
 /* Image Metadata */
@@ -210,8 +217,9 @@ h2.in-out-msg {
 /* Navbar Styling */
 
 .navbar-default {
-    border: 0;
-    background-color: #0896B2 !important;
+    height: 45px;
+    border-bottom: 5px solid #FCBB42;
+    background-color: #FFCE54 !important;
 }
 
 .navbar-toggle {
@@ -241,11 +249,11 @@ h2.in-out-msg {
 .navbar-nav li a:hover,
 .navbar-brand:hover {
     height: 50px;
-    border-bottom: 5px solid #066B7F;
+    border-bottom: 5px solid #DA4453;
 }
 
 .navbar-nav li a:hover:before {
-    color: #066B7F !important;
+    color: #DA4453 !important;
     font-family: 'fontawesome', sans-serif;
     position: absolute;
     -webkit-transform: rotate(-10deg);
