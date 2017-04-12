@@ -216,16 +216,24 @@ h2.in-out-msg {
 
 /* Navbar Styling */
 
+@media(min-width:768px)
+{
+    .navbar {height: 45px;}
+}
+
+/*.navbar {*/
+    /*height: 45px;*/
+/*}*/
+
 .navbar-default {
-    height: 45px;
     border-bottom: 5px solid #FCBB42;
     background-color: #FFCE54 !important;
 }
 
 .navbar-toggle {
     color: #fff;
-    border-color: #078199 !important;
-    background-color: #078199;
+    border-color: #DA4453 !important;
+    background-color: #DA4453;
     border-radius: 999px;
     padding-top: 6px;
     padding-bottom: 6px;
