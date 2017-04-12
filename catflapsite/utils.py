@@ -4,10 +4,15 @@ import boto.s3.connection
 import catflap.settings as settings
 import base64
 import re
+import math
 
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
 }
+
+INSIDE = 1
+OUTSIDE = 0
+SCHRODINGER = 2
 
 
 class ImgUrl(object):
@@ -19,10 +24,38 @@ class ImgUrl(object):
         self.size = key.size
         self.url = key.generate_url(expires_in = 0, query_auth = False, response_headers = AWS_HEADERS)
         self.httpurl = key.generate_url(expires_in = 0, query_auth = False, force_http = True)
+        if "-" not in key.name:
+            self.direction = SCHRODINGER
+        else:
+            if key.name.split("-")[-1] == "1.jpg":
+                self.direction = INSIDE
+            else:
+                self.direction = OUTSIDE
+
 
     @property
     def time_ago(self):
         return now() - self.time_taken
+
+    @property
+    def time_ago_str(self):
+        timeago = self.time_ago
+        days = timeago.days
+        hours = math.floor(timeago.seconds / 3600)
+        if hours > 1:
+            hp = "s"
+        else:
+            hp = ""
+        minutes = math.floor((timeago.seconds - (hours * 3600)) / 60)
+        if minutes > 1:
+            mp = "s"
+        else:
+            mp = ""
+
+        if days < 1:
+            return f"{hours} hour{hp} and {minutes} minute{mp}"
+        else:
+            return f"{days} days, {hours} hour{hp}, and {minutes} minute{mp}"
 
     @property
     def iscat(self):
