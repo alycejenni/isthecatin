@@ -108,4 +108,3 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(SITE_ROOT, "static")
-NOT_CAT = os.path.join(STATIC_ROOT, ".nc")
