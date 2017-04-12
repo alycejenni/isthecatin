@@ -1,0 +1,61 @@
+@import 'colours';
+@import 'typography';
+
+/* Base */
+
+body {
+  padding-top: 100px;
+  background-color: $colour-light-red;
+}
+
+/* Navbar */
+
+.navbar-default {
+  border-bottom: 5px solid $colour-dark-yellow;
+  background-color: $colour-light-yellow;
+}
+
+.navbar-nav li a {
+  color: #fff !important;
+  font: {
+    size: 26px;
+    weight: 700;
+  }
+  padding: {
+    left: 18px;
+    right: 18px;
+  }
+
+  &:hover {
+    border-bottom: 5px solid $colour-dark-red;
+
+    &:before {
+      color: $colour-dark-red;
+      font-family: 'fontawesome', sans-serif;
+      position: absolute;
+      -webkit-transform: rotate(-10deg);
+      transform: rotate(-10deg);
+      left: -10px;
+    }
+  }
+
+  &.icon-home:hover::before {
+    content: '\f1b0';
+  }
+
+  &.icon-history:hover::before {
+    content: '\f1da';
+  }
+
+  &.icon-rip:hover::before {
+    content: '\f119';
+  }
+
+  &.icon-feed:hover::before {
+    content: '\f022';
+  }
+
+  &.icon-github:hover::before {
+    content: '\f113';
+  }
+}
