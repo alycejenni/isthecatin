@@ -180,10 +180,12 @@ body {
 
 h3.img-metadata {
     margin-top: 45px;
+    font-size: 24px;
     font-weight: 500;
 }
 
 p.img-metadata {
+    font-size: 16px;
     font-weight: 300;
 }
 
