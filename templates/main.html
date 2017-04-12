@@ -8,9 +8,9 @@
             <div class="col-md-6 col-md-offset-3">
                 <img alt="this is probably a picture of the cat's bum" src="{{ img.url }}" class="img-responsive cat-img"/>
             </div>
-            <div class="col-md-3" style="color: #fff;">
-                <!--<h3>Foto facts</h3>-->
-                <!--<p>This photo was taken {{ img.time_ago_str }} ago</p>-->
+            <div class="col-md-3">
+                <h3 class="img-metadata">Latest photo</h3>
+                <p class="img-metadata">This photo was taken {{ img.time_ago_str }} ago</p>
             </div>
         </div>
         {% if img.direction == 0 %}
