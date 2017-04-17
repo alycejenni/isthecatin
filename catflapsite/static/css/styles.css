@@ -19,32 +19,59 @@ body {
   background-color: #ED5565; }
 
 /* Navbar */
+.navbar {
+  height: 45px; }
+
 .navbar-default {
   border-bottom: 5px solid #FCBB42;
   background-color: #FFCE54; }
 
-.navbar-nav li a {
+.navbar-nav li a,
+.navbar-brand {
   color: #fff !important;
   font-size: 26px;
   font-weight: 700;
   padding-left: 18px;
   padding-right: 18px; }
-  .navbar-nav li a:hover {
+  .navbar-nav li a:hover,
+  .navbar-brand:hover {
+    height: 50px;
     border-bottom: 5px solid #DA4453; }
-    .navbar-nav li a:hover:before {
+    .navbar-nav li a:hover:before,
+    .navbar-brand:hover:before {
       color: #DA4453;
       font-family: 'fontawesome', sans-serif;
       position: absolute;
       -webkit-transform: rotate(-10deg);
       transform: rotate(-10deg);
       left: -10px; }
-  .navbar-nav li a.icon-home:hover::before {
+  .navbar-nav li a.icon-home:hover::before,
+  .navbar-brand.icon-home:hover::before {
     content: '\f1b0'; }
-  .navbar-nav li a.icon-history:hover::before {
+  .navbar-nav li a.icon-history:hover::before,
+  .navbar-brand.icon-history:hover::before {
     content: '\f1da'; }
-  .navbar-nav li a.icon-rip:hover::before {
+  .navbar-nav li a.icon-rip:hover::before,
+  .navbar-brand.icon-rip:hover::before {
     content: '\f119'; }
-  .navbar-nav li a.icon-feed:hover::before {
+  .navbar-nav li a.icon-feed:hover::before,
+  .navbar-brand.icon-feed:hover::before {
     content: '\f022'; }
-  .navbar-nav li a.icon-github:hover::before {
+  .navbar-nav li a.icon-github:hover::before,
+  .navbar-brand.icon-github:hover::before {
     content: '\f113'; }
+
+/* Cat Image */
+.cat-img {
+  border: 5px dashed #FCBB42; }
+
+/* In/Out Message */
+h1.in-out-msg {
+  color: #fff;
+  margin-top: 30px;
+  font-size: 48px; }
+
+h2.in-out-msg {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 24px; }
