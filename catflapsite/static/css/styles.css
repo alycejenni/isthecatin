@@ -60,3 +60,14 @@ body {
   .navbar-nav li a.icon-github:hover::before,
   .navbar-brand.icon-github:hover::before {
     content: '\f113'; }
+
+/* In/Out Message */
+h1.in-out-msg {
+  color: #fff;
+  margin-top: 30px;
+  font-size: 48px; }
+
+h2.in-out-msg {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 24px; }

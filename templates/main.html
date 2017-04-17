@@ -13,6 +13,7 @@
                 <p class="img-metadata">Taken {{ img.time_ago_str }} ago.</p>
             </div>
         </div>
+        <div class="text-center">
         {% if img.direction == 0 %}
             {#if the cat is out#}
             <h1 class="in-out-msg">Looks like he's out <i class="fa fa-ambulance"></i></h1>
@@ -25,5 +26,6 @@
             <h1 class="in-out-msg">We're not sure where he is <i class="fa fa-bathtub"></i></h1>
             <h2 class="in-out-msg">Aw, darn</h2>
         {% endif %}
+        </div>
     </div>
 {% endblock %}
