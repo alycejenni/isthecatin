@@ -8,3 +8,7 @@ I've used a raspberry pi and a reed switch to detect when he uses his cat flap. 
 Be warned: I am relatively new to django. I cannot promise that any of this will be even remotely good.
 
 Please report any issues and/or feel free to contribute!
+
+### Useful links
+
+* [Fontawesome icon cheatsheet](http://fontawesome.io/cheatsheet/)

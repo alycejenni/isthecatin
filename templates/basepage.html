@@ -14,27 +14,19 @@
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRZFQ6B"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{% url 'current' %}" class="{% isactive 'current' %} h1">is the cat in?</a>
-        </div>
-        <div class="col-md-6">
-            <a href="{% url 'history' %}" class="{% isactive 'history' %} h1">was the cat in?</a>
-        </div>
-    </div>
-</div>
-<br>
+{% include 'fragments/navbar.html' %}
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+            <!--<a href="{% url 'current' %}" class="{% isactive 'current' %} h1">is the cat in?</a>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+            <!--<a href="{% url 'history' %}" class="{% isactive 'history' %} h1">was the cat in?</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<br>-->
 {% block content %}
 {% endblock %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12" style="font-size: small;">
-            <a href="https://github.com/alycejenni/isthecatin" target="_blank">created by alycejenni</a> || <a
-                href="https://github.com/alycejenni/isthecatin/issues" target="_blank">problems?</a> || <a
-                href="{% url 'catfood' %}">feed</a> || <a href="{% url 'rip' %}">gifts from the cat</a>
-        </div>
-    </div>
-</div>
 </body>
 </html>

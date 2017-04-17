@@ -1,0 +1,13 @@
+/* Typography Variables */
+body {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif; }
+
+h1, h2 {
+  font-weight: 700; }
+
+h3, h4 {
+  font-weight: 500; }
+
+p {
+  font-weight: 300; }

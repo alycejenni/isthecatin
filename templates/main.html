@@ -4,20 +4,28 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                <p>{{ img.direction }}</p>
-            </div>
-    </div>
         <div class="row">
-            <div class="col-md-12">
-                <img alt="this is probably a picture of the cat's bum" src="{{ img.url }}" class="img-responsive center-block"/>
+            <div class="col-md-6 col-md-offset-3">
+                <img alt="this is probably a picture of the cat's bum" src="{{ img.url }}" class="img-responsive cat-img"/>
+            </div>
+            <div class="col-md-3">
+                <h3 class="img-metadata">Latest photo <i class="fa fa-camera"></i></h3>
+                <p class="img-metadata">Taken {{ img.time_ago_str }} ago.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>this was taken {{ img.time_ago }} ago</p>
-            </div>
+        <div class="text-center">
+        {% if img.direction == 0 %}
+            {#if the cat is out#}
+            <h1 class="in-out-msg">Looks like he's out <i class="fa fa-ambulance"></i></h1>
+            <h2 class="in-out-msg">Hunting for mice</h2>
+        {% elif img.direction == 1 %}
+            <h1 class="in-out-msg">Looks like he's in <i class="fa fa-check"></i></h1>
+            <h2 class="in-out-msg">Grabbing some Zs</h2>
+        {% else %}
+            {#if he's being a quantum boy#}
+            <h1 class="in-out-msg">We're not sure where he is <i class="fa fa-bathtub"></i></h1>
+            <h2 class="in-out-msg">Aw, darn</h2>
+        {% endif %}
         </div>
     </div>
 {% endblock %}
