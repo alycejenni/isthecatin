@@ -10,12 +10,18 @@ body {
 
 /* Navbar */
 
+.navbar {
+  // Breaks in mobile
+  height: 45px;
+}
+
 .navbar-default {
   border-bottom: 5px solid $colour-dark-yellow;
   background-color: $colour-light-yellow;
 }
 
-.navbar-nav li a {
+.navbar-nav li a,
+.navbar-brand {
   color: #fff !important;
   font: {
     size: 26px;
@@ -27,6 +33,7 @@ body {
   }
 
   &:hover {
+    height: 50px;
     border-bottom: 5px solid $colour-dark-red;
 
     &:before {
@@ -38,6 +45,8 @@ body {
       left: -10px;
     }
   }
+
+  // Must be a better way to do this
 
   &.icon-home:hover::before {
     content: '\f1b0';
