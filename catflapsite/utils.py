@@ -52,8 +52,12 @@ class ImgUrl(object):
         else:
             mp = ""
 
-        if days < 1:
+        if days < 1 and hours > 0:
             return f"{hours} hour{hp} and {minutes} minute{mp}"
+        elif days < 1 and hours == 0 and minutes > 0:
+            return f"{minutes} minute{mp}"
+        elif days < 1 and hours == 0 and minutes == 0:
+            return "less than a minute"
         else:
             return f"{days} days, {hours} hour{hp}, and {minutes} minute{mp}"
 
