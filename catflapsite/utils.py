@@ -8,16 +8,22 @@ import math
 
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
-}
+    }
 
 INSIDE = 1
 OUTSIDE = 0
 SCHRODINGER = 2
 
+ACCEPTED_FILES = {
+    "jpg": "img",
+    "mp4": "video"
+    }
+
 
 class ImgUrl(object):
     def __init__(self, key):
         self.filename = key.name
+        self.filetype = ACCEPTED_FILES[key.name.split(".")[-1]]
         self.time_taken = localise(
             dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
@@ -27,11 +33,10 @@ class ImgUrl(object):
         if "-" not in key.name:
             self.direction = SCHRODINGER
         else:
-            if key.name.split("-")[-1] == "1.jpg":
+            if key.name.split("-")[-1].split(".")[0] == "1":
                 self.direction = INSIDE
             else:
                 self.direction = OUTSIDE
-
 
     @property
     def time_ago(self):
@@ -71,13 +76,15 @@ class ImgUrl(object):
 
 class S3Conn(object):
     def __init__(self):
-        self.client = boto.s3.connect_to_region("eu-west-2", aws_access_key_id = settings.AWS_KEY, is_secure = False, aws_secret_access_key = settings.AWS_SECRET, calling_format = boto.s3.connection.OrdinaryCallingFormat())
+        self.client = boto.s3.connect_to_region("eu-west-2", aws_access_key_id = settings.AWS_KEY, is_secure = False,
+                                                aws_secret_access_key = settings.AWS_SECRET,
+                                                calling_format = boto.s3.connection.OrdinaryCallingFormat())
         self.bucket = self.client.get_bucket(settings.IMAGE_BUCKET)
 
     @property
     def raw_keys(self):
         return list(reversed(
-            sorted([k for k in self.bucket.get_all_keys() if k.name.endswith(".jpg")],
+            sorted([k for k in self.bucket.get_all_keys() if k.name.split(".")[-1] in ACCEPTED_FILES.keys()],
                    key = lambda x: x.last_modified)))
 
     @property
