@@ -18,6 +18,9 @@ body {
   padding-top: 100px;
   background-color: #ED5565; }
 
+.padded-row {
+  margin-bottom: 10px; }
+
 /* Navbar */
 .navbar {
   height: 45px; }
@@ -61,6 +64,11 @@ body {
   .navbar-brand.icon-github:hover::before {
     content: '\f113'; }
 
+@media screen and (max-width: 768px) {
+  div.navbar-collapse {
+    border-bottom: 5px solid #FCBB42;
+    background-color: #FFCE54; } }
+
 /* Cat Image */
 .cat-img {
   border: 5px dashed #FCBB42; }
@@ -75,3 +83,62 @@ h2.in-out-msg {
   color: #fff;
   margin-top: 15px;
   font-size: 24px; }
+
+/* Toggles (sorry sam) */
+.toggle-cat {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden; }
+  .toggle-cat + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 2px;
+    width: 60px;
+    height: 30px;
+    background-color: #8CE196;
+    border-radius: 30px;
+    transition: background 0.4s; }
+  .toggle-cat:checked + label {
+    background-color: #DA4453; }
+  .toggle-cat + label:before {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #ED5565;
+    border-radius: 30px;
+    padding: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    font-variant: small-caps;
+    text-align: right;
+    content: "alive";
+    transition: background 0.4s; }
+  .toggle-cat:checked + label:before {
+    content: "dead";
+    text-align: left; }
+  .toggle-cat + #lblKD:before {
+    content: "idk"; }
+  .toggle-cat:checked + #lblKD:before {
+    content: "yup"; }
+  .toggle-cat + label:after {
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    width: 22px;
+    background-color: #8CE196;
+    border-radius: 26px;
+    transition: margin 0.4s, background 0.4s;
+    content: ""; }
+  .toggle-cat:checked + label:after {
+    margin-left: 30px;
+    background-color: #DA4453; }

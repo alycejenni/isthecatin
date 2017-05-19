@@ -35,15 +35,12 @@ a.inactivepage {
     visibility: hidden;
 }
 
-.toggle-cat + label {
+input.toggle-cat + label {
     display: block;
     position: relative;
     cursor: pointer;
     outline: none;
     user-select: none;
-}
-
-input.toggle-cat + label {
     padding: 2px;
     width: 60px;
     height: 30px;
