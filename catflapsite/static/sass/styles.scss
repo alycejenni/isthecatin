@@ -8,6 +8,10 @@ body {
   background-color: $colour-light-red;
 }
 
+.padded-row {
+  margin-bottom: 10px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -69,6 +73,13 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  div.navbar-collapse {
+    border-bottom: 5px solid $colour-dark-yellow;
+    background-color: $colour-light-yellow;
+  }
+}
+
 /* Cat Image */
 
 .cat-img {
@@ -87,4 +98,73 @@ h2.in-out-msg {
   color: #fff;
   margin-top: 15px;
   font-size: 24px;
+}
+
+/* Toggles (sorry sam) */
+
+.toggle-cat {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+  & + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 2px;
+    width: 60px;
+    height: 30px;
+    background-color: $colour-light-green;
+    border-radius: 30px;
+    transition: background 0.4s;
+  }
+  &:checked + label {
+    background-color: $colour-dark-red;
+  }
+  & + label:before {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: $colour-light-red;
+    border-radius: 30px;
+    padding: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    font-variant: small-caps;
+    text-align: right;
+    content: "alive";
+    transition: background 0.4s;
+  }
+  &:checked + label:before {
+    content: "dead";
+    text-align: left;
+  }
+  & + #lblKD:before {
+    content: "idk";
+  }
+  &:checked + #lblKD:before {
+    content: "yup";
+  }
+  & + label:after {
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    width: 22px;
+    background-color: $colour-light-green;
+    border-radius: 26px;
+    transition: margin 0.4s, background 0.4s;
+    content: "";
+  }
+  &:checked + label:after {
+    margin-left: 30px;
+    background-color: $colour-dark-red;
+  }
 }
