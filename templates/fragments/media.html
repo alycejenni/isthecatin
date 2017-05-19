@@ -1,5 +1,8 @@
 {% if src.filetype == "img" %}
 <img alt="this is probably a picture of the cat's bum" src="{{ src.url }}" class="{{ classes }}" {% if id is not None %}id="{{ id }}"{% endif %}/>
 {% elif src.filetype == "video" %}
-<video/>
+<video width="{{ max_width|default:640 }}" height="{{ max_width|default:640 }} * (480/640)" class="{{ classes }}" {% if id is not None %}id="{{ id }}"{% endif %} controls>
+        <source src="{{ src.url }}" type="video/mp4">
+this is a video, and apparently your browser doesn't support that.
+</video>
 {% endif %}

@@ -73,6 +73,9 @@ body {
 .cat-img {
   border: 5px dashed #FCBB42; }
 
+.minisize {
+  max-width: 300px; }
+
 /* In/Out Message */
 h1.in-out-msg {
   color: #fff;
