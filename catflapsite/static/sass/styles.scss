@@ -86,6 +86,10 @@ body {
   border: 5px dashed $colour-dark-yellow;
 }
 
+.minisize {
+  max-width: 300px;
+}
+
 /* In/Out Message */
 
 h1.in-out-msg {

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <img alt="this is probably a picture of the cat's bum" src="{{ img.url }}" class="img-responsive cat-img"/>
+                {% include "fragments/media.html" with src=img classes="img-responsive cat-img" %}
             </div>
             <div class="col-md-3">
                 <h3 class="img-metadata">Latest photo <i class="fa fa-camera"></i></h3>
@@ -16,8 +16,8 @@
         <div class="text-center">
         {% if img.direction == 0 %}
             {#if the cat is out#}
-            <h1 class="in-out-msg">Looks like he's out <i class="fa fa-ambulance"></i></h1>
-            <h2 class="in-out-msg">Hunting for mice</h2>
+            <h1 class="in-out-msg">Looks like he's out <i class="fa fa-exclamation-triangle"></i></h1>
+            <h2 class="in-out-msg">Decimating the local rabbit population</h2>
         {% elif img.direction == 1 %}
             <h1 class="in-out-msg">Looks like he's in <i class="fa fa-check"></i></h1>
             <h2 class="in-out-msg">Grabbing some Zs</h2>

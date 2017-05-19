@@ -1,0 +1,5 @@
+{% if src.filetype == "img" %}
+<img alt="this is probably a picture of the cat's bum" src="{{ src.url }}" class="{{ classes }}" {% if id is not None %}id="{{ id }}"{% endif %}/>
+{% elif src.filetype == "video" %}
+<video/>
+{% endif %}

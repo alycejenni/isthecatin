@@ -28,8 +28,7 @@
                     </div>
                     <a href="#" class="zoomthumb">
                         <div style="position: relative; top: -20px; z-index: -100;">
-                            <img alt="this is probably a picture of the cat's bum" class="img-thumbnail"
-                                 src="{{ img.url }}"/></div>
+                            {% include "fragments/media.html" with src=img classes="img-thumbnail" %}</div>
                     </a>
                     <p>{{ img.time_taken }}</p>
                 </div>

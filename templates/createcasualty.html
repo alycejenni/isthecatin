@@ -20,9 +20,7 @@
             </div>
             <div class="row padded-row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <img src="{{ img.url }}" id="id_caughtintheact" class="img-rounded img-responsive center-block"
-                         alt="a picture of the cat emerging from the catflap with something in his mouth"
-                         title="caught in the act" style="max-width: 300px;">
+                    {% include 'fragments/media.html' with src=img classes="img-rounded img-responsive center-block minisize" id="id_caughtintheact" %}
                 </div>
             </div>
             <div class="row padded-row">
