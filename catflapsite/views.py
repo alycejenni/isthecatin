@@ -15,8 +15,9 @@ def current(request):
 
 
 def history(request):
+    PAGE_SIZE_LIMIT = 18
     return render(request, "history.html", {
-        "imgs": kitty.cats
+        "imgs": kitty.cats[0:PAGE_SIZE_LIMIT]
     })
 
 
