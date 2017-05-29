@@ -1,0 +1,56 @@
+{% extends 'basepage.html' %}
+{% block content %}
+    <div class="container">
+        <form method="post" action="{% url 'bulkedit' page %}">{% csrf_token %}
+            <div class="row padded-row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
+                    <input type="radio" value="all" id="rdoAll" name="display"
+                           {% if displaytype == "all" %}checked{% endif %}>
+                    <label for="rdoAll">All</label>
+                    <input type="radio" value="cats" id="rdoCats" name="display"
+                           {% if request.method == "GET" or displaytype == "cats" %}checked{% endif %}>
+                    <label for="rdoCats">Cat</label>
+                    <input type="radio" value="notcats" id="rdoNotCats" name="display"
+                           {% if displaytype == "notcats" %}checked{% endif %}>
+                    <label for="rdoNotCats">Not cat</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
+                    <input type="radio" value="all" id="rdoSugAll" name="suggest" checked>
+                    <label for="rdoSugAll">All</label>
+                    <input type="radio" value="dark" id="rdoDark" name="suggest">
+                    <label for="rdoDark">Dark</label>
+                    <input type="radio" value="fast" id="rdoFast" name="suggest">
+                    <label for="rdoFast">Fast</label>
+                    <input type="radio" value="still" id="rdoStill" name="suggest">
+                    <label for="rdoStill">Still</label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+                    <input type="submit" class="btn btn-primary" value="Refresh">
+                </div>
+            </div>
+        </form>
+        <form method="post" action="{% url 'bulkedit' page %}"> {% csrf_token %}
+            <div class="row padded-row">
+                {% for img in imgs %}
+                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 padded-row">
+                        <input type="checkbox" value="{{ img.id }}" id="{{ img.id }}" class="bulkedit-thumbnail" name="items">
+                        <label for="{{ img.id }}">
+                            {% include "fragments/media.html" with src=img classes="img-thumbnail bulkedit-thumbnail" %}
+                            <small>{{ img.time_ago_str }} ago</small>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row padded-row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    {% if page > 1 %}
+                    <input type="submit" name="btn_submit" value="Previous page" class="btn btn-primary">
+                    {% endif %}
+                    <input type="submit" name="btn_submit" value="No cats here" class="btn btn-primary">
+                    <input type="submit" name="btn_submit" value="Delete these" class="btn btn-primary">
+                    <input type="submit" name="btn_submit" value="Next page" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

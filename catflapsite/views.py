@@ -1,5 +1,6 @@
 import base64
 
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from .utils import conn as kitty
 from .utils import ImgUrl
@@ -38,8 +39,10 @@ def casualties(request):
         animals.append({
             "object": a,
             "encoded": base64.b64encode((serializers.serialize('json', [a])).encode())
-            })
-    return render(request, "rip.html", {"animals": animals})
+        })
+    return render(request, "rip.html", {
+        "animals": animals
+    })
 
 
 def submitcasualty(request):
@@ -54,9 +57,75 @@ def submitcasualty(request):
 def createcasualty(request, img):
     if img is not None:
         img = ImgUrl(kitty.get_key(img))
-        form = CreateCasualty(initial = { 'url': img.url })
-        return render(request, "createcasualty.html", { "form": form, "img": img })
+        form = CreateCasualty(initial={
+            'url': img.url
+        })
+        return render(request, "createcasualty.html", {
+            "form": form,
+            "img": img
+        })
     else:
-        form = CreateCasualty(initial = {
-            'url': "https://upload.wikimedia.org/wikipedia/commons/1/1e/Large_Siamese_cat_tosses_a_mouse.jpg" })
-        return render(request, "createcasualty.html", { "form": form })
+        form = CreateCasualty(initial={
+            'url': "https://upload.wikimedia.org/wikipedia/commons/1/1e/Large_Siamese_cat_tosses_a_mouse.jpg"
+        })
+        return render(request, "createcasualty.html", {
+            "form": form
+        })
+
+
+@login_required(login_url="login")
+@user_passes_test(lambda u: u.is_superuser)
+def admin(request):
+    return render(request, "admin/admin.html")
+
+
+@login_required(login_url="login")
+@user_passes_test(lambda u: u.is_superuser)
+def bulk_edit(request, page="1"):
+    page_size_limit = 36
+    page = int(page)
+    page_start = (page - 1) * page_size_limit
+    page_end = page * page_size_limit
+    template = "admin/bulkedit.html"
+    if request.method == "POST" and "display" in request.POST:
+        items = []
+        displaytype = request.POST["display"]
+        if displaytype == "cats":
+            items = kitty.cats
+        elif displaytype == "all":
+            items = kitty.custom_keys
+        elif displaytype == "notcats":
+            items = kitty.notcats
+        return render(request, template, {
+            "imgs": items[page_start:page_end],
+            "displaytype": displaytype,
+            "page": page
+        })
+    elif request.method == "POST" and "btn_submit" in request.POST:
+        btn = request.POST["btn_submit"]
+        if btn == "Next page":
+            return redirect("bulkedit", page=str(page+1))
+        elif btn == "Previous page":
+            return redirect("bulkedit", page=str(page-1))
+        elif btn == "No cats here":
+            btn_method = kitty.set_not_cat
+        elif btn == "Delete these":
+            btn_method = kitty.delete_key
+
+        if "items" in request.POST:
+            items = request.POST.getlist("items")
+
+            for i in items:
+                try:
+                    btn_method(i)
+                except:
+                    pass
+            return render(request, template, {
+                "imgs": kitty.cats[page_start:page_end],
+                "page": page
+            })
+    else:
+        return render(request, template, {
+            "imgs": kitty.cats[page_start:page_end],
+            "page": page
+        })

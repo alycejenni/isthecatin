@@ -12,6 +12,48 @@ body {
   margin-bottom: 10px;
 }
 
+.question {
+  text-align: right;
+  margin-left: auto;
+}
+
+.answer {
+  text-align: left;
+  margin-right: auto;
+}
+
+.icon-tiny a {
+  color: $colour-light-yellow;
+  font-weight: normal;
+  padding: 5px;
+  &:hover {
+    color: $colour-dark-yellow;
+  }
+}
+
+.btn-primary {
+  background-color: $colour-dark-yellow;
+  border-color: $colour-light-yellow;
+}
+
+a {
+  &:hover {
+    height: 50px;
+    border-bottom: 5px solid $colour-dark-red;
+    color: white;
+    text-decoration: none;
+
+    &:before {
+      color: $colour-dark-red;
+      font-family: 'fontawesome', sans-serif;
+      position: absolute;
+      -webkit-transform: rotate(-10deg);
+      transform: rotate(-10deg);
+      left: -10px;
+    }
+  }
+}
+
 /* Navbar */
 
 .navbar {
@@ -36,21 +78,11 @@ body {
     right: 18px;
   }
 
-  &:hover {
-    height: 50px;
-    border-bottom: 5px solid $colour-dark-red;
-
-    &:before {
-      color: $colour-dark-red;
-      font-family: 'fontawesome', sans-serif;
-      position: absolute;
-      -webkit-transform: rotate(-10deg);
-      transform: rotate(-10deg);
-      left: -10px;
-    }
-  }
-
   // Must be a better way to do this
+
+  &.icon-admin:hover::before {
+    content: '\f013';
+  }
 
   &.icon-home:hover::before {
     content: '\f1b0';
@@ -104,7 +136,7 @@ h2.in-out-msg {
   font-size: 24px;
 }
 
-/* Toggles (sorry sam) */
+/* Inputs */
 
 .toggle-cat {
   position: absolute;
@@ -170,5 +202,45 @@ h2.in-out-msg {
   &:checked + label:after {
     margin-left: 30px;
     background-color: $colour-dark-red;
+  }
+}
+
+input[type=text], input[type=password] {
+  background-color: $colour-dark-red;
+  padding: 2px;
+  border: 2px solid $colour-rlydark-red;
+}
+
+input[type=radio] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  & + label {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid $colour-dark-red;
+    font-size: 18px;
+    margin: 0 2px 10px;
+  }
+  &:active + label {
+    opacity: 1;
+    background-color: $colour-dark-yellow;
+  }
+  &:checked + label {
+    opacity: 1;
+    background-color: $colour-light-yellow;
+  }
+}
+
+input[type=checkbox].bulkedit-thumbnail {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  & + label {
+    cursor: pointer;
+  }
+  &:checked + label > .bulkedit-thumbnail {
+    background-color: $colour-light-yellow;
+    border-color: $colour-light-yellow;
   }
 }

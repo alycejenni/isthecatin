@@ -1,5 +1,15 @@
 from django import forms
 from .models import Casualty
+from django.contrib.auth.forms import AuthenticationForm
+
+
+class UserLogin(AuthenticationForm):
+    username = forms.CharField(label="username", max_length=30, widget=forms.TextInput(attrs={
+        "tabindex": 1
+        }))
+    password = forms.CharField(label="password", widget=forms.PasswordInput(attrs={
+        "tabindex": 2
+        }))
 
 
 class CreateCasualty(forms.ModelForm):
