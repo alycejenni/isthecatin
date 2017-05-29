@@ -1,0 +1,43 @@
+{% extends 'basepage.html' %}
+{% block content %}
+    <div align="center">
+        {% if user.is_authenticated %}
+            <p>You're already logged in.</p>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="log out?"/>
+            </form>
+        {% else %}
+            <h1>sign in</h1>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="row padded-row">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 question">
+                            {{ form.username.label_tag }}
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 answer">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="row padded-row">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 question">
+                            {{ form.password.label_tag }}
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 answer">
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <div class="row center-block">
+                        <hr>
+                        <input align="center" class="btn btn-primary center-block" type="submit" value="login" tabindex="3"/>
+                        <hr>
+                    </div>
+                </div>
+            </form>
+            {% if form.errors %}
+                <p>Username and password combination not recognised. Please try again.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
