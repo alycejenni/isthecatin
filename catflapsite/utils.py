@@ -5,6 +5,7 @@ import catflap.settings as settings
 import base64
 import re
 import math
+import vidana
 
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
@@ -72,6 +73,13 @@ class ImgUrl(object):
             return "not%20a%20cat" not in self.url
         except:
             return True  # always assume cat
+
+    @property
+    def moving(self):
+        if self.filetype == "img":
+            return True
+        vid = vidana.Video(self.httpurl)
+        return vid.movement
 
 
 class S3Conn(object):
