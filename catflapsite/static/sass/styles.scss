@@ -92,6 +92,10 @@ a {
     content: '\f1da';
   }
 
+  &.icon-highlights:hover::before {
+    content: '\f005';
+  }
+
   &.icon-rip:hover::before {
     content: '\f119';
   }

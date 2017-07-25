@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row padded-row">
             {% for img in imgs %}
-                <div class="col-md-4 col-xs-6">
+                <div class="col-md-4 col-xs-6 img-box">
                     <div style="text-align: right;">
                         {% if request.user.is_superuser %}
                             <table>
@@ -24,6 +24,12 @@
                                                    alt="button to mark image as containing possible casualty"
                                                    title="he's got something!"/></form>
                                     </td>
+                                    <td>
+                                        <img href="#" class="addhighlight" src="{% static 'images/star.png' %}"
+                                             height="20px" style="padding:0; margin:0; top:-3px; position: relative;"
+                                             alt="button to mark image as a really good one"
+                                             title="oh this is a good one"/>
+                                    </td>
                                 </tr>
                             </table>
                         {% else %}
@@ -39,8 +45,29 @@
             {% endfor %}
         </div>
     </div>
-    <div id="zoomcat" style="width: 100%; margin: 0 0 0 0;">
+    <div id="zoomcat" style="width: 100%; margin: 0;">
         <div id="zoomcat-body" style="width: 100%" align="center">
         </div>
     </div>
+    <div id="popupHighlight" style="width: 100%; margin: 0;">
+        <form>
+            {% csrf_token %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" id="popupHighlight-media">
+                    </div>
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <label for="popupHighlight-comment">Comment:</label>
+                        <textarea id="popupHighlight-comment" style="width: 100%;"></textarea>
+                        <input type="hidden">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+<script>
+    loadZoom();
+    loadNominate();
+</script>
 {% endblock %}

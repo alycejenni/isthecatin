@@ -11,6 +11,7 @@ urlpatterns = [
     }),
     url(r"^$", siteviews.current, name="current"),
     url(r"^history$", siteviews.history, name="history"),
+    url(r"^highlights$", siteviews.highlights, name="highlights"),
     url(r'^notcat/(?P<img>.*)$', siteviews.notcat, name="notcat"),
     url(r'^catfood$', sitefeeds.CatFood(), name="catfood"),
     url(r'^rip$', siteviews.casualties, name="rip"),

@@ -77,6 +77,9 @@ a:hover {
   .navbar-nav li a.icon-history:hover::before,
   .navbar-brand.icon-history:hover::before {
     content: '\f1da'; }
+  .navbar-nav li a.icon-highlights:hover::before,
+  .navbar-brand.icon-highlights:hover::before {
+    content: '\f005'; }
   .navbar-nav li a.icon-rip:hover::before,
   .navbar-brand.icon-rip:hover::before {
     content: '\f119'; }

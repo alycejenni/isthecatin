@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .utils import conn as kitty
 from .utils import ImgUrl
 from .forms import CreateCasualty
-from .models import Casualty
+from .models import Casualty, Highlight
 from django.core import serializers
 
 
@@ -20,6 +20,13 @@ def history(request):
     return render(request, "history.html", {
         "imgs": kitty.cats[0:PAGE_SIZE_LIMIT]
     })
+
+
+def highlights(request):
+    PAGE_SIZE_LIMIT = 18
+    return render(request, "highlights.html", {
+        "imgs": Highlight.objects.all()[0:PAGE_SIZE_LIMIT]
+        })
 
 
 def notcat(request, img):
