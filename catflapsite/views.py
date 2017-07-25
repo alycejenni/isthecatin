@@ -96,12 +96,6 @@ def bulk_edit(request, page="1"):
             items = kitty.custom_keys
         elif displaytype == "notcats":
             items = kitty.notcats
-
-        filter = request.POST["suggest"]
-        if filter == "all":
-            pass
-        elif filter == "still":
-            items = [i for i in items[0:6] if not i.moving]
         return render(request, template, {
             "imgs": items[page_start:page_end],
             "displaytype": displaytype,
