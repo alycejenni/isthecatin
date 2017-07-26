@@ -67,7 +67,7 @@ def nominate(request):
         if form.is_valid():
             form.save()
             print("saved")
-    return redirect("highlights")
+    return redirect("highlights", page="1")
 
 
 def notcat(request, img):
@@ -76,7 +76,7 @@ def notcat(request, img):
             kitty.set_not_cat(img)
         except Exception as e:
             print(e)
-        return redirect(history)
+        return redirect(history, page="1")
 
 
 def casualties(request):
