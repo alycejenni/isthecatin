@@ -4,6 +4,7 @@ var loadZoom = function () {
         width: 'auto',
         height: 'auto',
         resizable: false,
+        title: 'Look a cat',
         show: {
             effect: 'fade',
             duration: 500
@@ -30,6 +31,7 @@ var loadNominate = function () {
         width: 'auto',
         height: 'auto',
         resizable: false,
+        title: 'Nominate for the Hall of Infamy!',
         show: {
             effect: 'fade',
             duration: 500

@@ -14,7 +14,7 @@ class UserLogin(AuthenticationForm):
 
 class NominateHighlight(forms.ModelForm):
     url = forms.URLField(required = True, widget = forms.HiddenInput(attrs = {"class": "hidden-url"}))
-    comment = forms.CharField(required = False, widget = forms.Textarea())
+    comment = forms.CharField(required = False, widget = forms.TextInput(attrs = {"style": "width:100%"}))
     class Meta:
         model = Highlight
         fields = ["url", "comment"]

@@ -24,9 +24,18 @@ def history(request):
 
 
 def highlights(request):
-    PAGE_SIZE_LIMIT = 18
-    imgs_objects = Highlight.objects.all()[0:PAGE_SIZE_LIMIT]
-    imgs = [{"media": ImgUrl(kitty.get_cat_from_url(i.url)), "comment": i.comment} for i in imgs_objects]
+    PAGE_SIZE_LIMIT = 16
+    imgs = {}
+    for i in Highlight.objects.all():
+        if len(imgs) == PAGE_SIZE_LIMIT:
+            break
+        img = ImgUrl(kitty.get_cat_from_url(i.url))
+        if img.id in imgs.keys():
+            imgs[img.id]["comments"].append(i.comment)
+        else:
+            imgs[img.id] = {"media": img,
+                            "comments": [i.comment]}
+    imgs = [imgs[i] for i in imgs]
     return render(request, "highlights.html", {
         "imgs": imgs
         })

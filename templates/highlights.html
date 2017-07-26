@@ -7,12 +7,17 @@
     <div class="container">
         <div class="row padded-row">
             {% for img in imgs %}
-                <div class="col-md-4 col-xs-6">
+                <div class="col-md-4 col-xs-8">
                     <a href="#" class="zoomthumb">
                         <div style="position: relative; top: -20px; z-index: -100;">
                             {% include "fragments/media.html" with src=img.media classes="img-thumbnail" %}</div>
                     </a>
-                    <p style="position: relative; top: -20px; text-align: center;">{{ img.comment }}</p>
+                    <p style="position: relative; top: -20px; text-align: center;">{{ img.media.time_taken }}</p>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                {% for comment in img.comments %}
+                    <p>- {{ comment }}</p>
+                {% endfor %}
                 </div>
             {% endfor %}
         </div>

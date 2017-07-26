@@ -18,6 +18,14 @@ body {
   padding-top: 100px;
   background-color: #ED5565; }
 
+.ui-dialog {
+  background-color: #FFCE54 !important; }
+
+.ui-dialog-titlebar {
+  background-color: #FCBB42 !important;
+  border: none;
+  margin-bottom: 20px; }
+
 .padded-row {
   margin-bottom: 10px; }
 
