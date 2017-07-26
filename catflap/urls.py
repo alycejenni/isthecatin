@@ -11,11 +11,13 @@ urlpatterns = [
     }),
     url(r"^$", siteviews.current, name="current"),
     url(r"^history$", siteviews.history, name="history"),
+    url(r"^highlights$", siteviews.highlights, name="highlights"),
     url(r'^notcat/(?P<img>.*)$', siteviews.notcat, name="notcat"),
     url(r'^catfood$', sitefeeds.CatFood(), name="catfood"),
     url(r'^rip$', siteviews.casualties, name="rip"),
     url(r'^ffsganja/(?P<img>.*)$', siteviews.createcasualty, name="ffsganja"),
     url(r'^submitcasualty$', siteviews.submitcasualty, name="submitcasualty"),
+    url(r"^nominate$", siteviews.nominate, name="nominate"),
     url(r'^login$', login, {
         'template_name': 'user/login.html',
         'authentication_form': siteforms.UserLogin

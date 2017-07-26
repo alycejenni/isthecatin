@@ -10,3 +10,8 @@ class Casualty(models.Model):
     known_deceased = models.BooleanField()
     additional_image = models.URLField()
     guilty_cat = models.URLField()
+
+
+class Highlight(models.Model):
+    url = models.URLField()
+    comment = models.CharField(max_length = 255)

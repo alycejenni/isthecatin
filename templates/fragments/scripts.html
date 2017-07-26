@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Google Tag Manager -->
 <script>(function (w, d, s, l, i) {
     w[l] = w[l] || [];
@@ -17,31 +18,4 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-    $(function () {
-        $('#zoomcat').dialog({
-            autoOpen: false,
-            width: 'auto',
-            height: 'auto',
-            resizable: false,
-            show: {
-                effect: 'fade',
-                duration: 500
-            },
-            hide: {
-                effect: 'fade',
-                duration: 500
-            }
-        });
-
-        $('.zoomthumb').on('click', function () {
-            $('#zoomcat-body').empty();
-            $($(this).children('div').html()).appendTo('#zoomcat-body');
-            var zoomcat = $('#zoomcat');
-            var zoomcatimg = zoomcat.find('img');
-            zoomcatimg.removeClass('img-thumbnail');
-            zoomcatimg.addClass('img-responsive');
-            zoomcat.dialog('open');
-        });
-    });
-</script>
+<script src="{% static 'javascript/popups.js' %}"></script>

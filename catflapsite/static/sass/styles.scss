@@ -8,6 +8,16 @@ body {
   background-color: $colour-light-red;
 }
 
+.ui-dialog {
+  background-color: $colour-light-yellow !important;
+}
+
+.ui-dialog-titlebar {
+  background-color: $colour-dark-yellow !important;
+  border: none;
+  margin-bottom: 20px;
+}
+
 .padded-row {
   margin-bottom: 10px;
 }
@@ -90,6 +100,10 @@ a {
 
   &.icon-history:hover::before {
     content: '\f1da';
+  }
+
+  &.icon-highlights:hover::before {
+    content: '\f005';
   }
 
   &.icon-rip:hover::before {

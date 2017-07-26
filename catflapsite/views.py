@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from .utils import conn as kitty
 from .utils import ImgUrl
-from .forms import CreateCasualty
-from .models import Casualty
+from .forms import CreateCasualty, NominateHighlight
+from .models import Casualty, Highlight
 from django.core import serializers
 
 
@@ -18,8 +18,37 @@ def current(request):
 def history(request):
     PAGE_SIZE_LIMIT = 18
     return render(request, "history.html", {
-        "imgs": kitty.cats[0:PAGE_SIZE_LIMIT]
+        "imgs": kitty.cats[0:PAGE_SIZE_LIMIT],
+        "nomination_form": NominateHighlight()
     })
+
+
+def highlights(request):
+    PAGE_SIZE_LIMIT = 16
+    imgs = {}
+    for i in Highlight.objects.all():
+        if len(imgs) == PAGE_SIZE_LIMIT:
+            break
+        img = ImgUrl(kitty.get_cat_from_url(i.url))
+        if img.id in imgs.keys():
+            imgs[img.id]["comments"].append(i.comment)
+        else:
+            imgs[img.id] = {"media": img,
+                            "comments": [i.comment]}
+    imgs = [imgs[i] for i in imgs]
+    return render(request, "highlights.html", {
+        "imgs": imgs
+        })
+
+
+def nominate(request):
+    if request.method == "POST":
+        form = NominateHighlight(request.POST)
+        if form.is_valid():
+            form.save()
+            print("saved")
+    return redirect("highlights")
+
 
 
 def notcat(request, img):
