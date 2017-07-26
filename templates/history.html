@@ -50,7 +50,7 @@
         </div>
     </div>
     <div id="popupHighlight" style="width: 100%; margin: 0;">
-        <form>
+        <form method="post" action="{% url 'nominate' %}">
             {% csrf_token %}
             <div class="container-fluid">
                 <div class="row">
@@ -58,9 +58,9 @@
                     </div>
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                         <label for="popupHighlight-comment">Comment:</label>
-                        <textarea id="popupHighlight-comment" style="width: 100%;"></textarea>
-                        <input type="hidden">
-                        <button type="submit">Submit</button>
+                        {{ nomination_form.comment }}
+                        {{ nomination_form.url }}
+                        <input align="center" class="btn btn-primary center-block" type="submit" value="submit"/>
                     </div>
                 </div>
             </div>

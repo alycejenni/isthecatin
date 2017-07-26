@@ -10,9 +10,9 @@
                 <div class="col-md-4 col-xs-6">
                     <a href="#" class="zoomthumb">
                         <div style="position: relative; top: -20px; z-index: -100;">
-                            {% include "fragments/media.html" with src=img classes="img-thumbnail" %}</div>
+                            {% include "fragments/media.html" with src=img.media classes="img-thumbnail" %}</div>
                     </a>
-                    <p style="position: relative; top: -20px; text-align: center;">{{ img.time_taken }}</p>
+                    <p style="position: relative; top: -20px; text-align: center;">{{ img.comment }}</p>
                 </div>
             {% endfor %}
         </div>
@@ -21,4 +21,7 @@
         <div id="zoomcat-body" style="width: 100%" align="center">
         </div>
     </div>
+    <script>
+        loadZoom();
+    </script>
 {% endblock %}

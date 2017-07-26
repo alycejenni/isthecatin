@@ -105,7 +105,11 @@ class S3Conn(object):
 
     def get_key(self, b64imgid):
         filename = decode_filename(b64imgid)
-        return self.bucket.get_key(filename, validate=False)
+        return self.bucket.get_key(filename, validate = False)
+
+    def get_cat_from_url(self, url):
+        filename = url.split("/")[-1].split("?")[0]
+        return self.bucket.get_key(filename, validate = False)
 
     def set_not_cat(self, b64imgid):
         filename = decode_filename(b64imgid)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Casualty
+from .models import Casualty, Highlight
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -10,6 +10,14 @@ class UserLogin(AuthenticationForm):
     password = forms.CharField(label="password", widget=forms.PasswordInput(attrs={
         "tabindex": 2
         }))
+
+
+class NominateHighlight(forms.ModelForm):
+    url = forms.URLField(required = True, widget = forms.HiddenInput(attrs = {"class": "hidden-url"}))
+    comment = forms.CharField(required = False, widget = forms.Textarea())
+    class Meta:
+        model = Highlight
+        fields = ["url", "comment"]
 
 
 class CreateCasualty(forms.ModelForm):
