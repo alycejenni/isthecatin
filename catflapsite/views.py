@@ -15,29 +15,49 @@ def current(request):
     })
 
 
-def history(request):
-    PAGE_SIZE_LIMIT = 18
+def history(request, page="1"):
+    page = int(page)
+    if request.method == "POST" and "btn_submit" in request.POST:
+        btn = request.POST["btn_submit"]
+        if btn == "Next page":
+            return redirect("history", page=str(page+1))
+        elif btn == "Previous page":
+            return redirect("history", page=str(page-1))
+    page_size_limit = 18
+    page_start = (page - 1) * page_size_limit
+    page_end = page * page_size_limit
     return render(request, "history.html", {
-        "imgs": kitty.cats[0:PAGE_SIZE_LIMIT],
-        "nomination_form": NominateHighlight()
+        "imgs": kitty.cats[page_start:page_end],
+        "nomination_form": NominateHighlight(),
+        "page": page,
+        "more_pages": (len(kitty.cats) != 0) and (page_end < len(kitty.cats) - 1)
     })
 
 
-def highlights(request):
-    PAGE_SIZE_LIMIT = 16
+def highlights(request, page="1"):
+    page = int(page)
+    if request.method == "POST" and "btn_submit" in request.POST:
+        btn = request.POST["btn_submit"]
+        if btn == "Next page":
+            return redirect("highlights", page=str(page+1))
+        elif btn == "Previous page":
+            return redirect("highlights", page=str(page-1))
+    page_size_limit = 20
+    page_start = (page - 1) * page_size_limit
+    page_end = page * page_size_limit
     imgs = {}
-    for i in Highlight.objects.all():
-        if len(imgs) == PAGE_SIZE_LIMIT:
+    urls = Highlight.objects.distinct("url").order_by("url")
+    for i in urls[page_start:page_end]:
+        if len(imgs) == page_size_limit:
             break
-        img = ImgUrl(kitty.get_cat_from_url(i.url))
-        if img.id in imgs.keys():
-            imgs[img.id]["comments"].append(i.comment)
-        else:
-            imgs[img.id] = {"media": img,
-                            "comments": [i.comment]}
+        highlights_objects = Highlight.objects.filter(url__exact=i)
+        img = ImgUrl(kitty.get_cat_from_url(i))
+        imgs[img.id] = {"media": img, "comments": [c.comment for c in highlights_objects]}
     imgs = [imgs[i] for i in imgs]
     return render(request, "highlights.html", {
-        "imgs": imgs
+        "imgs": imgs,
+        "page": page,
+        "more_pages": (len(imgs) != 0) and (page_end < len(imgs) - 1)
         })
 
 
@@ -48,7 +68,6 @@ def nominate(request):
             form.save()
             print("saved")
     return redirect("highlights")
-
 
 
 def notcat(request, img):

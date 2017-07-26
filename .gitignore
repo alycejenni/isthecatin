@@ -4,5 +4,4 @@ __pycache__
 *.env
 .idea
 /catflapsite/static/sass/*.css
-*.node
-node_modules/
+/node_modules/
