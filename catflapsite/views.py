@@ -50,8 +50,8 @@ def highlights(request, page="1"):
     for i in urls[page_start:page_end]:
         if len(imgs) == page_size_limit:
             break
-        highlights_objects = Highlight.objects.filter(url__exact=i)
-        img = ImgUrl(kitty.get_cat_from_url(i))
+        highlights_objects = Highlight.objects.filter(url__exact=i.url)
+        img = ImgUrl(kitty.get_cat_from_url(i.url))
         imgs[img.id] = {"media": img, "comments": [c.comment for c in highlights_objects]}
     imgs = [imgs[i] for i in imgs]
     return render(request, "highlights.html", {
