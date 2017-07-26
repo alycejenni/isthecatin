@@ -47,6 +47,18 @@
                 </div>
             {% endfor %}
         </div>
+        <form method="post" action="{% url 'history' page %}"> {% csrf_token %}
+            <div class="row padded-row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    {% if page > 1 %}
+                        <input type="submit" name="btn_submit" value="Previous page" class="btn btn-primary">
+                    {% endif %}
+                    {% if more_pages %}
+                        <input type="submit" name="btn_submit" value="Next page" class="btn btn-primary">
+                    {% endif %}
+                </div>
+            </div>
+        </form>
     </div>
     <div id="zoomcat" style="width: 100%; margin: 0;" class="popup">
         <div id="zoomcat-body" style="width: 100%" align="center">
@@ -68,7 +80,8 @@
                             {{ nomination_form.url }}
                         </div>
                         <div class="row">
-                            (you can nominate something for the hall of infamy more than once if you've got a lot to say!)
+                            (you can nominate something for the hall of infamy more than once if you've got a lot to
+                            say!)
                         </div>
                         <input align="center" class="btn btn-primary center-block" type="submit" value="submit"/>
                     </div>

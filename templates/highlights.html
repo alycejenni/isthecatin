@@ -15,13 +15,25 @@
                     <p style="position: relative; top: -20px; text-align: center;">{{ img.media.time_taken }}</p>
                 </div>
                 <div class="col-md-2 col-xs-4">
-                {% for comment in img.comments %}
-                    <p>- {{ comment }}</p>
-                {% endfor %}
+                    {% for comment in img.comments %}
+                        <p>- {{ comment }}</p>
+                    {% endfor %}
                 </div>
             {% endfor %}
         </div>
     </div>
+    <form method="post" action="{% url 'highlights' page %}"> {% csrf_token %}
+        <div class="row padded-row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                {% if page > 1 %}
+                    <input type="submit" name="btn_submit" value="Previous page" class="btn btn-primary">
+                {% endif %}
+                {% if more_pages %}
+                    <input type="submit" name="btn_submit" value="Next page" class="btn btn-primary">
+                {% endif %}
+            </div>
+        </div>
+    </form>
     <div id="zoomcat" style="width: 100%; margin: 0 0 0 0;">
         <div id="zoomcat-body" style="width: 100%" align="center">
         </div>
