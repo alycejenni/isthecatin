@@ -1,7 +1,9 @@
 from django.conf.urls import url
-from .views import *
+from .views import admin as siteadmin, bulk_edit
+from django.contrib import admin as djangoadmin
 
 urlpatterns = [
-    url(r"^$", admin, name="admin"),
-    url(r"^bulkedit/(?P<page>[0-9]+)$", bulk_edit, name="bulkedit")
-]
+    url(r"^$", siteadmin, name = "admin"),
+    url(r"^bulkedit/(?P<page>[0-9]+)$", bulk_edit, name = "bulkedit"),
+    url(r'^tools/', djangoadmin.site.urls),
+    ]

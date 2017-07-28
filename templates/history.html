@@ -9,7 +9,7 @@
             {% for img in imgs %}
                 <div class="col-md-4 col-xs-6 img-box">
                     <div style="text-align: right;">
-                        {% if request.user.is_superuser %}
+                        {% if is_mod %}
                             <table>
                                 <tr>
                                     <td>

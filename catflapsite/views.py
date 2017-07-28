@@ -26,11 +26,13 @@ def history(request, page="1"):
     page_size_limit = 18
     page_start = (page - 1) * page_size_limit
     page_end = page * page_size_limit
+    is_mod = request.user.groups.filter(name__in=['Moderators', 'Admin']).exists()
     return render(request, "history.html", {
         "imgs": kitty.cats[page_start:page_end],
         "nomination_form": NominateHighlight(),
         "page": page,
-        "more_pages": (len(kitty.cats) != 0) and (page_end < len(kitty.cats) - 1)
+        "more_pages": (len(kitty.cats) != 0) and (page_end < len(kitty.cats) - 1),
+        "is_mod": is_mod or request.user.is_superuser
     })
 
 
