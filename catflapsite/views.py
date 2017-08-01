@@ -74,7 +74,7 @@ def notcat(request, img):
 
 
 def casualties(request):
-    animals = get_cats_from_objects(Casualty.objects, 0, None, ["known_deceased"])
+    animals = get_cats_from_objects(Casualty.objects, 0, None, ["known_deceased"], True)
     return render(request, "rip.html", {
         "animals": animals
     })

@@ -1,9 +1,14 @@
 {% if src.filetype == "img" %}
     <img alt="this is probably a picture of the cat's bum" src="{{ src.url }}" class="{{ classes }} media-item"
-         {% if id is not None %}id="{{ id }}"{% endif %}/>
+         {% if id is not None %}id="{{ id }}"{% endif %}
+    {% if event is not None and method is not None %}{{ event }}="{{ method }}(
+        {% if pk is not None %}{{ pk }}{% endif %})"{% endif %}/>
 {% elif src.filetype == "video" %}
-    <video autoplay muted width="{{ max_width|default:640 }}" height="{{ max_width|default:640 }} * (480/640)" class="{{ classes }} media-item"
-           {% if id is not None %}id="{{ id }}"{% endif %} autoplay loop>
+    <video autoplay muted width="{{ max_width|default:640 }}" height="{{ max_width|default:640 }} * (480/640)"
+           class="{{ classes }} media-item"
+           {% if id is not None %}id="{{ id }}"{% endif %} autoplay
+           loop {% if event is not None and method is not None %}{{ event }}="{{ method }}(
+        {% if pk is not None %}{{ pk }}{% endif %})"{% endif %}>
         <source src="{{ src.url }}" type="video/mp4">
         this is a video, and apparently your browser doesn't support that.
     </video>

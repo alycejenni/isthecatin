@@ -5,6 +5,7 @@ import catflap.settings as settings
 import base64
 import re
 import math
+import requests
 
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400"
@@ -20,12 +21,28 @@ ACCEPTED_FILES = {
 }
 
 
+class FakeKey(object):
+    def __init__(self, url):
+        self.name = url.split("/")[-1].split("?")[0]
+        response = requests.get(url)
+        if response.ok:
+            self.size = len(response.content)
+        else:
+            self.size = 200
+        self.__url = url
+
+    def generate_url(self, **kwargs):
+        return self.__url
+
+
 class ImgUrl(object):
     def __init__(self, key):
         self.filename = key.name
         self.filetype = ACCEPTED_FILES[key.name.split(".")[-1]]
-        self.time_taken = localise(
-            dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
+        try:
+            self.time_taken = localise(dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
+        except AttributeError:
+            self.time_taken = localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
         self.url = key.generate_url(expires_in=0, query_auth=False, response_headers=AWS_HEADERS)
@@ -109,7 +126,10 @@ class S3Conn(object):
 
     def get_cat_from_url(self, url):
         filename = url.split("/")[-1].split("?")[0]
-        return self.bucket.get_key(filename, validate = False)
+        cat = self.bucket.get_key(filename, validate = False)
+        if not cat.exists():
+            cat = FakeKey(url)
+        return cat
 
     def set_not_cat(self, b64imgid):
         filename = decode_filename(b64imgid)
@@ -145,7 +165,7 @@ def decode_filename(b64imgid):
     return filename
 
 
-def get_cats_from_objects(url_objects, page_start, page_end, fields):
+def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only = False):
     imgs = {}
     urls = url_objects.distinct("url").order_by("url")
     if page_end is not None:
@@ -158,8 +178,12 @@ def get_cats_from_objects(url_objects, page_start, page_end, fields):
         imgs[img.id] = {
             "media": img
         }
+        fields.append("pk")
         for field in fields:
-            imgs[img.id][field] = [getattr(o, field) for o in obj]
+            if first_only:
+                imgs[img.id][field] = getattr(obj[0], field)
+            else:
+                imgs[img.id][field] = [getattr(o, field) for o in obj]
     return [imgs[i] for i in imgs]
 
 

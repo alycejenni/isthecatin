@@ -1,6 +1,4 @@
-function refreshContent(animalb64){
-    var animal = JSON.parse(window.atob(animalb64))[0].fields;
-
+function refreshContent(animal){
     var animalType;
     if (animal.creature_type === ""){
         animalType = "mysterious creature"
@@ -45,6 +43,17 @@ function refreshContent(animalb64){
     $('#critterpicture').attr("src", animal.additional_image);
 
     $('#guiltycat').attr("src", animal.guilty_cat);
+}
 
-
+function displayCasualty(pk){
+    $.ajax({
+        url: '/ajax/getcasualty',
+        data: {
+          'pk': pk
+        },
+        dataType: 'json',
+        success: function (data) {
+          refreshContent(data)
+        }
+      });
 }

@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import admin as siteadmin, bulk_edit
+from catflapsite.views import admin as siteadmin, bulk_edit
 from django.contrib import admin as djangoadmin
 
 urlpatterns = [

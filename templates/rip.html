@@ -14,9 +14,9 @@
                 {% for animal in animals %}
                     <div class="carousel-cell">
                         {% if animal.known_deceased %}
-                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail ded" %}
+                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail ded" event="onclick" method="displayCasualty" pk=animal.pk %}
                         {% else %}
-                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail notded" %}
+                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail notded" event="onclick" method="displayCasualty" pk=animal.pk %}
                         {% endif %}
                     </div>
                 {% endfor %}</div>
