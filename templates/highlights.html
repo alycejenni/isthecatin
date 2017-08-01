@@ -1,5 +1,6 @@
 {% extends "basepage.html" %}
 {% load static %}
+{% load l10n %}
 {% block title %}
     hall of infamy
 {% endblock %}
@@ -12,7 +13,7 @@
                         <div style="position: relative; top: -20px; z-index: -100;">
                             {% include "fragments/media.html" with src=img.media classes="img-thumbnail" %}</div>
                     </a>
-                    <p style="position: relative; top: -20px; text-align: center;">{{ img.media.time_taken }}</p>
+                    <p style="position: relative; top: -20px; text-align: center;">{{ img.media.time_taken|localize }}</p>
                 </div>
                 <div class="col-md-2 col-xs-4">
                     {% for comment in img.comment %}
