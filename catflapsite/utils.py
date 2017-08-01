@@ -145,4 +145,23 @@ def decode_filename(b64imgid):
     return filename
 
 
+def get_cats_from_objects(url_objects, page_start, page_end, fields):
+    imgs = {}
+    urls = url_objects.distinct("url").order_by("url")
+    if page_end is not None:
+        urls = urls[page_start:page_end]
+    for i in urls:
+        if page_end is not None and len(imgs) == page_end - page_start:
+            break
+        obj = url_objects.filter(url__exact=i.url)
+        img = ImgUrl(conn.get_cat_from_url(i.url))
+        imgs[img.id] = {
+            "media": img
+        }
+        for field in fields:
+            imgs[img.id][field] = [getattr(o, field) for o in obj]
+    return [imgs[i] for i in imgs]
+
+
+
 conn = S3Conn()

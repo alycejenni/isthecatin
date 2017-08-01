@@ -211,3 +211,37 @@ input[type=checkbox].bulkedit-thumbnail {
   input[type=checkbox].bulkedit-thumbnail:checked + label > .bulkedit-thumbnail {
     background-color: #FFCE54;
     border-color: #FFCE54; }
+
+.ded {
+  color: #DA4453; }
+
+img.ded, video.ded {
+  border-color: #DA4453;
+  background-color: #DA4453; }
+
+.notded {
+  color: #8CE196; }
+
+img.notded, video.notded {
+  border-color: #8CE196;
+  background-color: #8CE196; }
+
+img.notded, img.ded, video.notded, video.ded {
+  cursor: pointer;
+  max-height: 100px;
+  width: auto; }
+
+.carousel {
+  display: table; }
+
+.carousel-row {
+  display: table-row; }
+
+.carousel-cell {
+  display: table-cell;
+  margin: 0 5px;
+  padding: 0;
+  text-align: center; }
+  .carousel-cell > * {
+    display: block;
+    margin: auto; }

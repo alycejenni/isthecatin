@@ -3,10 +3,10 @@ import base64
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from .utils import conn as kitty
-from .utils import ImgUrl
+from .utils import ImgUrl, get_cats_from_objects
 from .forms import CreateCasualty, NominateHighlight
 from .models import Casualty, Highlight
-from django.core import serializers
+from datetime import datetime as dt
 
 
 def current(request):
@@ -47,15 +47,7 @@ def highlights(request, page="1"):
     page_size_limit = 20
     page_start = (page - 1) * page_size_limit
     page_end = page * page_size_limit
-    imgs = {}
-    urls = Highlight.objects.distinct("url").order_by("url")
-    for i in urls[page_start:page_end]:
-        if len(imgs) == page_size_limit:
-            break
-        highlights_objects = Highlight.objects.filter(url__exact=i.url)
-        img = ImgUrl(kitty.get_cat_from_url(i.url))
-        imgs[img.id] = {"media": img, "comments": [c.comment for c in highlights_objects]}
-    imgs = [imgs[i] for i in imgs]
+    imgs = get_cats_from_objects(Highlight.objects, page_start, page_end, ["comment"])
     return render(request, "highlights.html", {
         "imgs": imgs,
         "page": page,
@@ -82,14 +74,7 @@ def notcat(request, img):
 
 
 def casualties(request):
-    animal_objects = Casualty.objects.all()
-
-    animals = []
-    for a in animal_objects:
-        animals.append({
-            "object": a,
-            "encoded": base64.b64encode((serializers.serialize('json', [a])).encode())
-        })
+    animals = get_cats_from_objects(Casualty.objects, 0, None, ["known_deceased"])
     return render(request, "rip.html", {
         "animals": animals
     })
@@ -108,7 +93,8 @@ def createcasualty(request, img):
     if img is not None:
         img = ImgUrl(kitty.get_key(img))
         form = CreateCasualty(initial={
-            'url': img.url
+            'url': img.url,
+            'time_taken': img.time_taken.strftime('%Y-%m-%d')
         })
         return render(request, "createcasualty.html", {
             "form": form,

@@ -9,12 +9,17 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-xs-12" style="height: 100px; overflow-y: hidden; white-space: nowrap">
+            <div class="col-md-12 col-xs-12 carousel" style="height: 100px; overflow-y: hidden; white-space: nowrap">
+            <div class="carousel-row">
                 {% for animal in animals %}
-                    <img src="{{ animal.object.url }}"
-                         class="img-thumbnail {% if animal.object.known_deceased %}ded{% else %}notded{% endif %}"
-                         style="max-height: 100px; margin: 0 5px" onClick="refreshContent('{{ animal.encoded }}')"/>
-                {% endfor %}
+                    <div class="carousel-cell">
+                        {% if animal.known_deceased %}
+                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail ded" %}
+                        {% else %}
+                            {% include "fragments/media.html" with src=animal.media classes="img-thumbnail notded" %}
+                        {% endif %}
+                    </div>
+                {% endfor %}</div>
             </div>
         </div>
         <hr>

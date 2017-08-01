@@ -258,3 +258,46 @@ input[type=checkbox].bulkedit-thumbnail {
     border-color: $colour-light-yellow;
   }
 }
+
+.ded {
+  color: $colour-dark-red;
+}
+
+img.ded, video.ded {
+  border-color: $colour-dark-red;
+  background-color: $colour-dark-red;
+}
+
+.notded {
+  color: $colour-light-green;
+}
+
+img.notded, video.notded {
+  border-color: $colour-light-green;
+  background-color: $colour-light-green;
+}
+
+img.notded, img.ded, video.notded, video.ded {
+  cursor: pointer;
+  max-height: 100px;
+  width: auto;
+}
+
+.carousel {
+  display: table;
+}
+
+.carousel-row {
+  display: table-row;
+}
+
+.carousel-cell {
+  display: table-cell;
+  margin: 0 5px;
+  padding: 0;
+  text-align: center;
+  & > * {
+    display: block;
+    margin: auto;
+  }
+}
