@@ -134,7 +134,7 @@ img.notded {
 .img-blur {
     filter: blur(10px);
     display: inline;
-    margin: 20px 0px;
+    margin: 20px 0;
     transition: 200ms filter linear;
 }
 
