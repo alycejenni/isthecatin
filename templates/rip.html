@@ -9,8 +9,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-xs-12 carousel" style="height: 100px; overflow-y: hidden; white-space: nowrap">
-            <div class="carousel-row">
+            <div class="col-md-12 col-xs-12 carousel">
                 {% for animal in animals %}
                     <div class="carousel-cell">
                         {% if animal.known_deceased %}
@@ -19,7 +18,7 @@
                             {% include "fragments/media.html" with src=animal.media classes="img-thumbnail notded" event="onclick" method="displayCasualty" pk=animal.pk %}
                         {% endif %}
                     </div>
-                {% endfor %}</div>
+                {% endfor %}
             </div>
         </div>
         <hr>

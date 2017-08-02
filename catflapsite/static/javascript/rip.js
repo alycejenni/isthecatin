@@ -38,11 +38,17 @@ function refreshContent(animal){
     obitHeader.text(obitTitle);
     $('#obit_desc').text(obitDesc);
 
-    $('#catflappicture').html(animal.catflap_media).children().addClass("img-responsive img-rounded img-blur center-block");
+    var catflappicture = $('#catflappicture');
+    catflappicture.html('');
+    catflappicture.html(animal.catflap_media).children().addClass("img-responsive img-rounded img-blur center-block");
 
-    $('#critterpicture').html(animal.critter_media).children().addClass("img-responsive img-rounded img-blur center-block");
+    var critterpicture = $('#critterpicture');
+    critterpicture.html('');
+    critterpicture.html(animal.critter_media).children().addClass("img-responsive img-rounded img-blur center-block");
 
-    $('#guiltycat').html(animal.guilty_media).children().addClass("img-responsive img-rounded img-blur center-block");
+    var guiltycat = $('#guiltycat');
+    guiltycat.html('');
+    guiltycat.html(animal.guilty_media).children().addClass("img-responsive img-rounded img-blur center-block");
 }
 
 function displayCasualty(pk){

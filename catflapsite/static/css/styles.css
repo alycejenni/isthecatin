@@ -228,20 +228,20 @@ img.notded, video.notded {
 
 img.notded, img.ded, video.notded, video.ded {
   cursor: pointer;
-  max-height: 100px;
+  height: 100px;
   width: auto; }
 
 .carousel {
-  display: table; }
-
-.carousel-row {
-  display: table-row; }
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap; }
 
 .carousel-cell {
-  display: table-cell;
+  display: inline-block;
   margin: 0 5px;
   padding: 0;
-  text-align: center; }
+  text-align: center;
+  width: auto; }
   .carousel-cell > * {
     display: block;
     margin: auto; }

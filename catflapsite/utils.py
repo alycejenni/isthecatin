@@ -17,7 +17,8 @@ SCHRODINGER = 2
 
 ACCEPTED_FILES = {
     "jpg": "img",
-    "mp4": "video"
+    "mp4": "video",
+    "png": "img"
 }
 
 
@@ -28,7 +29,8 @@ class FakeKey(object):
         if response.ok:
             self.size = len(response.content)
         else:
-            self.size = 200
+            self.size = 0
+        self.ok = response.ok
         self.__url = url
 
     def generate_url(self, **kwargs):
@@ -41,7 +43,7 @@ class ImgUrl(object):
         self.filetype = ACCEPTED_FILES[key.name.split(".")[-1]]
         try:
             self.time_taken = localise(dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
-        except AttributeError:
+        except:
             self.time_taken = localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
@@ -129,6 +131,8 @@ class S3Conn(object):
         cat = self.bucket.get_key(filename, validate = False)
         if not cat.exists():
             cat = FakeKey(url)
+            if not cat.ok:
+                return None
         return ImgUrl(cat)
 
     def set_not_cat(self, b64imgid):
@@ -175,6 +179,8 @@ def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only 
             break
         obj = url_objects.filter(url__exact=i.url)
         img = conn.get_cat_from_url(i.url)
+        if img is None:
+            continue
         imgs[img.id] = {
             "media": img
         }
