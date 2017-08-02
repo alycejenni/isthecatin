@@ -129,7 +129,7 @@ class S3Conn(object):
         cat = self.bucket.get_key(filename, validate = False)
         if not cat.exists():
             cat = FakeKey(url)
-        return cat
+        return ImgUrl(cat)
 
     def set_not_cat(self, b64imgid):
         filename = decode_filename(b64imgid)
@@ -174,7 +174,7 @@ def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only 
         if page_end is not None and len(imgs) == page_end - page_start:
             break
         obj = url_objects.filter(url__exact=i.url)
-        img = ImgUrl(conn.get_cat_from_url(i.url))
+        img = conn.get_cat_from_url(i.url)
         imgs[img.id] = {
             "media": img
         }

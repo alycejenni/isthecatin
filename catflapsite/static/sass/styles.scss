@@ -260,12 +260,12 @@ input[type=checkbox].bulkedit-thumbnail {
 }
 
 .ded {
-  color: $colour-dark-red;
+  color: $colour-rlydark-red;
 }
 
 img.ded, video.ded {
-  border-color: $colour-dark-red;
-  background-color: $colour-dark-red;
+  border-color: $colour-rlydark-red;
+  background-color: $colour-rlydark-red;
 }
 
 .notded {
@@ -299,5 +299,15 @@ img.notded, img.ded, video.notded, video.ded {
   & > * {
     display: block;
     margin: auto;
+  }
+}
+
+.img-blur {
+    filter: blur(10px);
+    display: inline;
+    margin: 10px 0;
+    transition: 200ms filter linear;
+  &:hover {
+    filter: blur(0px);
   }
 }
