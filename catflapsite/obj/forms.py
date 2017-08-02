@@ -1,6 +1,7 @@
 from django import forms
-from .models import Casualty, Highlight
 from django.contrib.auth.forms import AuthenticationForm
+
+from catflapsite.obj.models import Casualty, Highlight
 
 
 class UserLogin(AuthenticationForm):

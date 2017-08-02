@@ -2,7 +2,8 @@ from django.conf.urls import include, url
 from django.contrib.auth.views import login, logout
 from django.views.static import serve
 
-from catflapsite import views as siteviews, feeds as sitefeeds, forms as siteforms
+from catflapsite.obj import forms as siteforms
+from catflapsite.pages import feeds as sitefeeds, views as siteviews
 from catflapsite.urls import admin as siteadmin, ajax as siteajax
 from .settings import STATIC_ROOT
 

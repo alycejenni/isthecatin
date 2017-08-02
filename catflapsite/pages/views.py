@@ -1,12 +1,10 @@
-import base64
-
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
-from .utils import conn as kitty
-from .utils import ImgUrl, get_cats_from_objects
-from .forms import CreateCasualty, NominateHighlight
-from .models import Casualty, Highlight
-from datetime import datetime as dt
+
+from catflapsite.obj.forms import CreateCasualty, NominateHighlight
+from catflapsite.obj.models import Casualty, Highlight
+from catflapsite.utils import ImgUrl, get_cats_from_objects
+from catflapsite.utils import conn as kitty
 
 
 def current(request):
