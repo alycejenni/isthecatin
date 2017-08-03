@@ -6,8 +6,8 @@ from datetime import datetime as dt
 import requests
 
 from catflap import settings as settings
-from catflapsite.utils.constants import ACCEPTED_FILES, AWS_HEADERS, SCHRODINGER, INSIDE, OUTSIDE
-from catflapsite.utils.db import localise, now
+from catflapsite.utils import constants
+from catflapsite.utils import db
 
 
 class FakeKey(object):
@@ -28,26 +28,26 @@ class FakeKey(object):
 class ImgUrl(object):
     def __init__(self, key):
         self.filename = key.name
-        self.filetype = ACCEPTED_FILES[key.name.split(".")[-1]]
+        self.filetype = constants.ACCEPTED_FILES[key.name.split(".")[-1]]
         try:
-            self.time_taken = localise(dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
+            self.time_taken = db.localise(dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
         except:
-            self.time_taken = localise(dt.now())
+            self.time_taken = db.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
-        self.url = key.generate_url(expires_in=0, query_auth=False, response_headers= AWS_HEADERS)
+        self.url = key.generate_url(expires_in=0, query_auth=False, response_headers= constants.AWS_HEADERS)
         self.httpurl = key.generate_url(expires_in=0, query_auth=False, force_http=True)
         if "-" not in key.name:
-            self.direction = SCHRODINGER
+            self.direction = constants.SCHRODINGER
         else:
             if key.name.split("-")[-1].split(".")[0] == "1":
-                self.direction = INSIDE
+                self.direction = constants.INSIDE
             else:
-                self.direction = OUTSIDE
+                self.direction = constants.OUTSIDE
 
     @property
     def time_ago(self):
-        return now() - self.time_taken
+        return db.now() - self.time_taken
 
     @property
     def time_ago_str(self):

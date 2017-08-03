@@ -9,3 +9,4 @@ ACCEPTED_FILES = {
     "mp4": "video",
     "png": "img"
 }
+BOOTSTRAP_URL = r"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"

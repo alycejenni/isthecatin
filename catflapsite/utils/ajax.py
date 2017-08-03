@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 
 from catflapsite.obj.models import Casualty
-from catflapsite.utils import conn as kitty
+from catflapsite.utils import kitty
 
 
 def ajax_get_casualty(request):

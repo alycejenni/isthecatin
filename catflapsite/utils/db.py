@@ -6,7 +6,7 @@ import pytz
 
 import catflap.settings as settings
 from catflapsite.obj.custom import FakeKey, ImgUrl
-from catflapsite.utils.constants import ACCEPTED_FILES
+from catflapsite.utils import constants
 
 # CONNECTION MODEL #
 class S3Conn(object):
@@ -19,7 +19,7 @@ class S3Conn(object):
     @property
     def raw_keys(self):
         return list(reversed(
-            sorted([k for k in self.bucket.get_all_keys() if k.name.split(".")[-1] in ACCEPTED_FILES.keys()],
+            sorted([k for k in self.bucket.get_all_keys() if k.name.split(".")[-1] in constants.ACCEPTED_FILES.keys()],
                    key=lambda x: x.last_modified)))
 
     @property

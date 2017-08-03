@@ -1,5 +1,30 @@
-/* Colour Variables */
-/* Typography Variables */
+/* BASE */
+body {
+  padding-top: 100px;
+  background-color: #ED5565; }
+
+/* JQUERY OVERRIDES */
+.ui-dialog {
+  background-color: #FFCE54 !important; }
+
+.ui-dialog-titlebar {
+  background-color: #FCBB42 !important;
+  border: none;
+  margin-bottom: 20px; }
+
+/* DIV POSITIONING */
+.padded-row {
+  margin-bottom: 10px; }
+
+.question {
+  text-align: right;
+  margin-left: auto; }
+
+.answer {
+  text-align: left;
+  margin-right: auto; }
+
+/* TYPOGRAPHY */
 body {
   color: #fff;
   font-family: 'Montserrat', sans-serif; }
@@ -12,41 +37,6 @@ h3, h4 {
 
 p {
   font-weight: 300; }
-
-/* Base */
-body {
-  padding-top: 100px;
-  background-color: #ED5565; }
-
-.ui-dialog {
-  background-color: #FFCE54 !important; }
-
-.ui-dialog-titlebar {
-  background-color: #FCBB42 !important;
-  border: none;
-  margin-bottom: 20px; }
-
-.padded-row {
-  margin-bottom: 10px; }
-
-.question {
-  text-align: right;
-  margin-left: auto; }
-
-.answer {
-  text-align: left;
-  margin-right: auto; }
-
-.icon-tiny a {
-  color: #FFCE54;
-  font-weight: normal;
-  padding: 5px; }
-  .icon-tiny a:hover {
-    color: #FCBB42; }
-
-.btn-primary {
-  background-color: #FCBB42;
-  border-color: #FFCE54; }
 
 a:hover {
   height: 50px;
@@ -61,7 +51,17 @@ a:hover {
     transform: rotate(-10deg);
     left: -10px; }
 
-/* Navbar */
+h1.in-out-msg {
+  color: #fff;
+  margin-top: 30px;
+  font-size: 48px; }
+
+h2.in-out-msg {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 24px; }
+
+/* NAVBAR */
 .navbar {
   height: 45px; }
 
@@ -103,25 +103,7 @@ a:hover {
     border-bottom: 5px solid #FCBB42;
     background-color: #FFCE54; } }
 
-/* Cat Image */
-.cat-img {
-  border: 5px dashed #FCBB42; }
-
-.minisize {
-  max-width: 300px; }
-
-/* In/Out Message */
-h1.in-out-msg {
-  color: #fff;
-  margin-top: 30px;
-  font-size: 48px; }
-
-h2.in-out-msg {
-  color: #fff;
-  margin-top: 15px;
-  font-size: 24px; }
-
-/* Inputs */
+/* INPUTS */
 .toggle-cat {
   position: absolute;
   margin-left: -9999px;
@@ -211,6 +193,24 @@ input[type=checkbox].bulkedit-thumbnail {
   input[type=checkbox].bulkedit-thumbnail:checked + label > .bulkedit-thumbnail {
     background-color: #FFCE54;
     border-color: #FFCE54; }
+
+.btn-primary {
+  background-color: #FCBB42;
+  border-color: #FFCE54; }
+
+.icon-tiny a {
+  color: #FFCE54;
+  font-weight: normal;
+  padding: 5px; }
+  .icon-tiny a:hover {
+    color: #FCBB42; }
+
+/* MEDIA */
+.cat-img {
+  border: 5px dashed #FCBB42; }
+
+.minisize {
+  max-width: 300px; }
 
 .ded {
   color: #B5192D; }

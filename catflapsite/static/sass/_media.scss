@@ -1,0 +1,61 @@
+@import "colours";
+
+.cat-img {
+  border: 5px dashed $colour-dark-yellow;
+}
+
+.minisize {
+  max-width: 300px;
+}
+
+.ded {
+  color: $colour-rlydark-red;
+}
+
+img.ded, video.ded {
+  border-color: $colour-rlydark-red;
+  background-color: $colour-rlydark-red;
+}
+
+.notded {
+  color: $colour-light-green;
+}
+
+img.notded, video.notded {
+  border-color: $colour-light-green;
+  background-color: $colour-light-green;
+}
+
+img.notded, img.ded, video.notded, video.ded {
+  cursor: pointer;
+  height: 100px;
+  width: auto;
+}
+
+.carousel {
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.carousel-cell {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+  text-align: center;
+  width: auto;
+  & > * {
+    display: block;
+    margin: auto;
+  }
+}
+
+.img-blur {
+  filter: blur(10px);
+  display: inline;
+  margin: 10px 0;
+  transition: 200ms filter linear;
+  &:hover {
+    filter: blur(0px);
+  }
+}
