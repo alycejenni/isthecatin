@@ -1,13 +1,11 @@
 @import 'colours';
-@import 'typography';
-
-/* Base */
-
+/* BASE */
 body {
   padding-top: 100px;
   background-color: $colour-light-red;
 }
 
+/* JQUERY OVERRIDES */
 .ui-dialog {
   background-color: $colour-light-yellow !important;
 }
@@ -18,6 +16,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* DIV POSITIONING */
 .padded-row {
   margin-bottom: 10px;
 }
@@ -32,281 +31,14 @@ body {
   margin-right: auto;
 }
 
-.icon-tiny a {
-  color: $colour-light-yellow;
-  font-weight: normal;
-  padding: 5px;
-  &:hover {
-    color: $colour-dark-yellow;
-  }
-}
+/* TYPOGRAPHY */
+@import 'typography';
 
-.btn-primary {
-  background-color: $colour-dark-yellow;
-  border-color: $colour-light-yellow;
-}
+/* NAVBAR */
+@import 'navbar';
 
-a {
-  &:hover {
-    height: 50px;
-    border-bottom: 5px solid $colour-dark-red;
-    color: white;
-    text-decoration: none;
+/* INPUTS */
+@import "inputs";
 
-    &:before {
-      color: $colour-dark-red;
-      font-family: 'fontawesome', sans-serif;
-      position: absolute;
-      -webkit-transform: rotate(-10deg);
-      transform: rotate(-10deg);
-      left: -10px;
-    }
-  }
-}
-
-/* Navbar */
-
-.navbar {
-  // Breaks in mobile
-  height: 45px;
-}
-
-.navbar-default {
-  border-bottom: 5px solid $colour-dark-yellow;
-  background-color: $colour-light-yellow;
-}
-
-.navbar-nav li a,
-.navbar-brand {
-  color: #fff !important;
-  font: {
-    size: 26px;
-    weight: 700;
-  }
-  padding: {
-    left: 18px;
-    right: 18px;
-  }
-
-  // Must be a better way to do this
-
-  &.icon-admin:hover::before {
-    content: '\f013';
-  }
-
-  &.icon-home:hover::before {
-    content: '\f1b0';
-  }
-
-  &.icon-history:hover::before {
-    content: '\f1da';
-  }
-
-  &.icon-highlights:hover::before {
-    content: '\f005';
-  }
-
-  &.icon-rip:hover::before {
-    content: '\f119';
-  }
-
-  &.icon-feed:hover::before {
-    content: '\f022';
-  }
-
-  &.icon-github:hover::before {
-    content: '\f113';
-  }
-}
-
-@media screen and (max-width: 768px) {
-  div.navbar-collapse {
-    border-bottom: 5px solid $colour-dark-yellow;
-    background-color: $colour-light-yellow;
-  }
-}
-
-/* Cat Image */
-
-.cat-img {
-  border: 5px dashed $colour-dark-yellow;
-}
-
-.minisize {
-  max-width: 300px;
-}
-
-/* In/Out Message */
-
-h1.in-out-msg {
-  color: #fff;
-  margin-top: 30px;
-  font-size: 48px;
-}
-
-h2.in-out-msg {
-  color: #fff;
-  margin-top: 15px;
-  font-size: 24px;
-}
-
-/* Inputs */
-
-.toggle-cat {
-  position: absolute;
-  margin-left: -9999px;
-  visibility: hidden;
-  & + label {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    user-select: none;
-    padding: 2px;
-    width: 60px;
-    height: 30px;
-    background-color: $colour-light-green;
-    border-radius: 30px;
-    transition: background 0.4s;
-  }
-  &:checked + label {
-    background-color: $colour-dark-red;
-  }
-  & + label:before {
-    display: block;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    bottom: 2px;
-    right: 2px;
-    background-color: $colour-light-red;
-    border-radius: 30px;
-    padding: 4px;
-    font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    font-weight: normal;
-    font-variant: small-caps;
-    text-align: right;
-    content: "alive";
-    transition: background 0.4s;
-  }
-  &:checked + label:before {
-    content: "dead";
-    text-align: left;
-  }
-  & + #lblKD:before {
-    content: "idk";
-  }
-  &:checked + #lblKD:before {
-    content: "yup";
-  }
-  & + label:after {
-    display: block;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
-    width: 22px;
-    background-color: $colour-light-green;
-    border-radius: 26px;
-    transition: margin 0.4s, background 0.4s;
-    content: "";
-  }
-  &:checked + label:after {
-    margin-left: 30px;
-    background-color: $colour-dark-red;
-  }
-}
-
-input[type=text], input[type=password] {
-  background-color: $colour-dark-red;
-  padding: 2px;
-  border: 2px solid $colour-rlydark-red;
-}
-
-input[type=radio] {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  & + label {
-    cursor: pointer;
-    padding: 5px 10px;
-    border: 2px solid $colour-dark-red;
-    font-size: 18px;
-    margin: 0 2px 10px;
-  }
-  &:active + label {
-    opacity: 1;
-    background-color: $colour-dark-yellow;
-  }
-  &:checked + label {
-    opacity: 1;
-    background-color: $colour-light-yellow;
-  }
-}
-
-input[type=checkbox].bulkedit-thumbnail {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  & + label {
-    cursor: pointer;
-  }
-  &:checked + label > .bulkedit-thumbnail {
-    background-color: $colour-light-yellow;
-    border-color: $colour-light-yellow;
-  }
-}
-
-.ded {
-  color: $colour-rlydark-red;
-}
-
-img.ded, video.ded {
-  border-color: $colour-rlydark-red;
-  background-color: $colour-rlydark-red;
-}
-
-.notded {
-  color: $colour-light-green;
-}
-
-img.notded, video.notded {
-  border-color: $colour-light-green;
-  background-color: $colour-light-green;
-}
-
-img.notded, img.ded, video.notded, video.ded {
-  cursor: pointer;
-  height: 100px;
-  width: auto;
-}
-
-.carousel {
-  display: block;
-  overflow-x: scroll;
-  white-space: nowrap;
-}
-
-.carousel-cell {
-  display: inline-block;
-  margin: 0 5px;
-  padding: 0;
-  text-align: center;
-  width: auto;
-  & > * {
-    display: block;
-    margin: auto;
-  }
-}
-
-.img-blur {
-    filter: blur(10px);
-    display: inline;
-    margin: 10px 0;
-    transition: 200ms filter linear;
-  &:hover {
-    filter: blur(0px);
-  }
-}
+/* MEDIA */
+@import "media";

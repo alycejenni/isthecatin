@@ -1,8 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-ignore
-__pycache__
+*__pycache__
 *.env
 .idea
 /catflapsite/static/sass/*.css
 /node_modules/
-latest.dump

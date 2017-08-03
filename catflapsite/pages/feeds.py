@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
-from catflapsite.utils import conn as kitty
+from catflapsite.utils import kitty
 
 class WhiskasBox(Rss201rev2Feed):
     def root_attributes(self):

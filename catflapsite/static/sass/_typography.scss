@@ -1,0 +1,47 @@
+body {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+h3, h4 {
+  font-weight: 500;
+}
+
+p {
+  font-weight: 300;
+}
+
+a {
+  &:hover {
+    height: 50px;
+    border-bottom: 5px solid $colour-dark-red;
+    color: white;
+    text-decoration: none;
+
+    &:before {
+      color: $colour-dark-red;
+      font-family: 'fontawesome', sans-serif;
+      position: absolute;
+      -webkit-transform: rotate(-10deg);
+      transform: rotate(-10deg);
+      left: -10px;
+    }
+  }
+}
+
+// IN/OUT MESSAGE
+h1.in-out-msg {
+  color: #fff;
+  margin-top: 30px;
+  font-size: 48px;
+}
+
+h2.in-out-msg {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 24px;
+}

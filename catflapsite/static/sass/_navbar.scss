@@ -1,0 +1,61 @@
+@import "colours";
+
+.navbar {
+  // Breaks in mobile
+  height: 45px;
+}
+
+.navbar-default {
+  border-bottom: 5px solid $colour-dark-yellow;
+  background-color: $colour-light-yellow;
+}
+
+.navbar-nav li a,
+.navbar-brand {
+  color: #fff !important;
+  font: {
+    size: 26px;
+    weight: 700;
+  }
+  padding: {
+    left: 18px;
+    right: 18px;
+  }
+
+  // Must be a better way to do this
+
+  &.icon-admin:hover::before {
+    content: '\f013';
+  }
+
+  &.icon-home:hover::before {
+    content: '\f1b0';
+  }
+
+  &.icon-history:hover::before {
+    content: '\f1da';
+  }
+
+  &.icon-highlights:hover::before {
+    content: '\f005';
+  }
+
+  &.icon-rip:hover::before {
+    content: '\f119';
+  }
+
+  &.icon-feed:hover::before {
+    content: '\f022';
+  }
+
+  &.icon-github:hover::before {
+    content: '\f113';
+  }
+}
+
+@media screen and (max-width: 768px) {
+  div.navbar-collapse {
+    border-bottom: 5px solid $colour-dark-yellow;
+    background-color: $colour-light-yellow;
+  }
+}
