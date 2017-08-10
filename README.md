@@ -75,9 +75,13 @@ python manage.py runserver localhost:8000
 npm install
 ```
 
-**Run the server and then the gulp default task:**
+**Run the server:**
 ```shell-script
 python manage.py runserver localhost:8000
+```
+
+**Run the default task in a different prompt:**
+```shell-script
 gulp
 ```
 
