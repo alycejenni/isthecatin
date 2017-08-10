@@ -66,6 +66,21 @@ python manage.py migrate
 python manage.py runserver localhost:8000
 ```
 
+### Gulp
+**Dependencies:**
+- [Node.js](https://nodejs.org)
+
+**Install the Node packages with npm:**
+```shell-script
+npm install
+```
+
+**Run the server and then the gulp default task:**
+```shell-script
+python manage.py runserver localhost:8000
+gulp
+```
+
 ### Useful links
 
 * [Fontawesome icon cheatsheet](http://fontawesome.io/cheatsheet/)
