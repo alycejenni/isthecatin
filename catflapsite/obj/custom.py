@@ -35,7 +35,7 @@ class ImgUrl(object):
             self.time_taken = db.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
-        self.url = key.generate_url(expires_in=0, query_auth=False, response_headers= constants.AWS_HEADERS)
+        self.url = key.generate_url(expires_in=0, query_auth=False)
         self.httpurl = key.generate_url(expires_in=0, query_auth=False, force_http=True)
         if "-" not in key.name:
             self.direction = constants.SCHRODINGER
