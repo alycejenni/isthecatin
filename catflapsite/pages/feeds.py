@@ -17,7 +17,7 @@ class CatFood(Feed):
                   "hands, and other body parts (usually still attached to the rest of the body)."
 
     def items(self):
-        return kitty.cats
+        return kitty.cats(0, 1000)
 
     def item_title(self, item):
         return str(item.time_taken)
