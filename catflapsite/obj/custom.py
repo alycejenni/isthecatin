@@ -30,7 +30,8 @@ class ImgUrl(object):
         self.filename = key.name
         self.filetype = constants.ACCEPTED_FILES[key.name.split(".")[-1]]
         try:
-            self.time_taken = db.localise(dt.fromtimestamp(float(re.search(".+_(\d+_\d+)[^\d]+", key.name).groups()[0].replace("_", "."))))
+            self.time_taken = db.localise(dt.fromtimestamp(
+                float(re.search(constants.REGEXES["file_timestamp"], key.name).groups()[0].replace("_", "."))))
         except:
             self.time_taken = db.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())

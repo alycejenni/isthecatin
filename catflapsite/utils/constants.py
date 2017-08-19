@@ -9,4 +9,9 @@ ACCEPTED_FILES = {
     "mp4": "video",
     "png": "img"
 }
+FILE_PREFIX = "cat_"
 BOOTSTRAP_URL = r"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+REGEXES = {
+    "file_timestamp": ".+_(\d+_\d+)[^\d]+"
+}
