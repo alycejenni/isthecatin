@@ -1,17 +1,15 @@
-import base64
-from datetime import datetime as dt
-import time
 import re
+import time
 
 import boto.s3.connection
-import pytz
 
 import catflap.settings as settings
 from catflapsite.obj.custom import FakeKey, ImgUrl
 from catflapsite.utils import constants
+from catflapsite.utils.utils import decode_filename
 
 
-# CONNECTION MODEL #
+# CONNECTION MODEL
 class S3Conn(object):
     def __init__(self):
         self.client = boto.s3.connect_to_region("eu-west-2", aws_access_key_id=settings.AWS_KEY, is_secure=False,
@@ -29,7 +27,8 @@ class S3Conn(object):
             prefix = str(time.time()).split(".")[0][:-rf]
         while len(keys) < listlen:
             keys_with_prefix = self.bucket.get_all_keys(prefix=constants.FILE_PREFIX + prefix)
-            key_section = sorted([k for k in keys_with_prefix if k.name.split(".")[-1] in constants.ACCEPTED_FILES.keys()],
+            key_section = sorted(
+                [k for k in keys_with_prefix if k.name.split(".")[-1] in constants.ACCEPTED_FILES.keys()],
                 key=lambda x: x.last_modified, reverse=True)
             maxlen = min(listlen, len(key_section))
             if previous_key is not None:
@@ -86,24 +85,7 @@ class S3Conn(object):
         self.bucket.delete_key(filename)
 
 
-# UTILITY METHODS #
-def localise(t):
-    london = pytz.timezone("Europe/London")
-    return london.localize(t)
-
-
-def now():
-    return localise(dt.now())
-
-
-def decode_filename(b64imgid):
-    bytesid = bytes(b64imgid, "utf-8")
-    b64id = base64.urlsafe_b64decode(bytesid)
-    decodeid = b64id.decode()
-    filename = decodeid.replace(settings.SALT, "").split("?")[0]
-    return filename
-
-
+# UTILITY METHODS
 def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only=False):
     imgs = {}
     urls = url_objects.distinct("url").order_by("url")

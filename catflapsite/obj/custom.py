@@ -5,6 +5,7 @@ from datetime import datetime as dt
 
 import requests
 
+import catflapsite.utils.utils
 from catflap import settings as settings
 from catflapsite.utils import constants
 from catflapsite.utils import db
@@ -30,10 +31,10 @@ class ImgUrl(object):
         self.filename = key.name
         self.filetype = constants.ACCEPTED_FILES[key.name.split(".")[-1]]
         try:
-            self.time_taken = db.localise(dt.fromtimestamp(
+            self.time_taken = catflapsite.utils.utils.localise(dt.fromtimestamp(
                 float(re.search(constants.REGEXES["file_timestamp"], key.name).groups()[0].replace("_", "."))))
         except:
-            self.time_taken = db.localise(dt.now())
+            self.time_taken = catflapsite.utils.utils.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
         self.url = key.generate_url(expires_in=0, query_auth=False)
@@ -48,7 +49,7 @@ class ImgUrl(object):
 
     @property
     def time_ago(self):
-        return db.now() - self.time_taken
+        return catflapsite.utils.utils.now() - self.time_taken
 
     @property
     def time_ago_str(self):
