@@ -3,9 +3,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
-This is my cat:
-
-![this is a photo of my cat rolling around on the floor](http://i37.photobucket.com/albums/e69/alicejelly/3b0798c5-7b11-4333-bba7-dc07de717b48.jpg)
+[This is my cat](http://s3.eu-west-2.amazonaws.com/isthecatin-images/cat_1512635996_8505661-1.mp4).
 
 His name is Tyson, and he is a bunny-murdering monster.
 
