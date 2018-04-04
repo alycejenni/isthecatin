@@ -1,4 +1,8 @@
 # is the cat in?
+
+[![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+
 This is my cat:
 
 ![this is a photo of my cat rolling around on the floor](http://i37.photobucket.com/albums/e69/alicejelly/3b0798c5-7b11-4333-bba7-dc07de717b48.jpg)
