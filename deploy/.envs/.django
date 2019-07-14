@@ -1,0 +1,9 @@
+# General
+# ------------------------------------------------------------------------------
+DJANGO_SETTINGS_MODULE=config.settings.local
+SECRET_KEY=_4op!5med6y0pen%qda_+2g05h822sd5ya5b!@l!_n2q6*0n98
+DJANGO_DEBUG=True
+IMAGE_BUCKET=isthecatin-images
+AWS_KEY=AKIAJGRGKBVY2BWIJS4Q
+AWS_SECRET=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
+SALT=814934EAB1D13D3E20EF6E528943DA48D36F1CAB078976F0FD1B2113292F965A

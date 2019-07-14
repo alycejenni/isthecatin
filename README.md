@@ -33,7 +33,7 @@ createuser -P -d kitty
 createdb -U kitty isthecatin
 ```
 
-**Create a file called '.env' in the 'catflap' directory and fill it with this:**
+**Create a file called '.env' in the 'config' directory and fill it with this:**
 ```
 SECRET_KEY=[YOUR-DJANGO-SECRET-KEY]
 DJANGO_DEBUG=True

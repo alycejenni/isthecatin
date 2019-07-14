@@ -18,10 +18,10 @@ libsass==0.13.2
 matplotlib==2.0.2
 numpy==1.13.1
 olefile==0.44
-opencv-python==3.2.0.8
+opencv-python==3.4.5.20
 packaging==16.8
 pandas==0.20.3
-psycopg2==2.7.3
+psycopg2==2.7.3.2
 pyparsing==2.2.0
 python-dateutil==2.6.1
 python-dotenv==0.6.4
