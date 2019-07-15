@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 *__pycache__
-*.env
+deploy/.envs/
 .idea
 /app/static/sass/*.css
 /node_modules/
