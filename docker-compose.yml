@@ -19,7 +19,6 @@ services:
       - ./deploy/.envs/.postgres
     ports:
       - "8000:8000"
-    command: /start
 
   postgres:
     build:

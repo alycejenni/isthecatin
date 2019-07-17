@@ -1,34 +1,44 @@
 import re
-import time
+from datetime import datetime as dt
 
-import boto.s3.connection
+import boto3
 
-from config.settings import env as settings
 from app.obj.custom import FakeKey, ImgUrl
 from app.utils import constants
 from app.utils.utils import decode_filename
+from config.settings import env as settings
 
 
 # CONNECTION MODEL
 class S3Conn(object):
     def __init__(self):
-        self.client = boto.s3.connect_to_region("eu-west-2", aws_access_key_id=settings.AWS_KEY, is_secure=False,
-                                                aws_secret_access_key=settings.AWS_SECRET,
-                                                calling_format=boto.s3.connection.OrdinaryCallingFormat())
-        self.bucket = self.client.get_bucket(settings.IMAGE_BUCKET)
+        self.client = boto3.client('s3',
+                                   aws_access_key_id=settings.AWS_KEY,
+                                   aws_secret_access_key=settings.AWS_SECRET,
+                                   region_name='eu-west-2')
+        self.s3 = boto3.resource('s3',
+                                 aws_access_key_id=settings.AWS_KEY,
+                                 aws_secret_access_key=settings.AWS_SECRET,
+                                 region_name='eu-west-2'
+                                 )
+        self.bucket = self.s3.Bucket(settings.IMAGE_BUCKET)
 
     def raw_keys(self, start=None, n=18, previous_key=None):
-        rf = 4 if n < 100 else 5
+        rf = 5 if n < 100 else 6
         keys = []
         listlen = n if start is None else start + n
         if previous_key is not None:
-            prefix = re.search(constants.REGEXES["file_timestamp"], previous_key).groups()[0].split("_")[0][:-rf]
+            prefix = \
+            re.search(constants.REGEXES["file_timestamp"], previous_key).groups()[0].split("_")[0][
+            :-rf]
         else:
-            prefix = str(time.time()).split(".")[0][:-rf]
+            # start with now and work backwards
+            prefix_timestamp = dt.timestamp(dt.now())
         while len(keys) < listlen:
-            keys_with_prefix = self.bucket.get_all_keys(prefix=constants.FILE_PREFIX + prefix)
+            prefix = str(prefix_timestamp)[:6]
+            keys_with_prefix = self.bucket.objects.filter(Prefix=constants.FILE_PREFIX + prefix)
             key_section = sorted(
-                [k for k in keys_with_prefix if k.name.split(".")[-1] in constants.ACCEPTED_FILES.keys()],
+                [k for k in keys_with_prefix],
                 key=lambda x: x.last_modified, reverse=True)
             maxlen = min(listlen, len(key_section))
             if previous_key is not None:
@@ -38,8 +48,7 @@ class S3Conn(object):
                     ix = 0
                 keys += key_section[ix:ix + maxlen]
             keys += key_section[:maxlen]
-            rounded = float(prefix + ("0" * rf))
-            prefix = str(rounded - int("1" + ("0" * rf))).split(".")[0][:-rf]
+            prefix_timestamp -= 10000
         return keys[0 if start is None else start:listlen]
 
     def custom_keys(self, start=0, n=18):
@@ -57,11 +66,11 @@ class S3Conn(object):
 
     def get_key(self, b64imgid):
         filename = decode_filename(b64imgid)
-        return self.bucket.get_key(filename, validate=False)
+        return self.bucket.Object(filename)
 
     def get_cat_from_url(self, url):
         filename = url.split("/")[-1].split("?")[0]
-        cat = self.bucket.get_key(filename, validate=False)
+        cat = self.bucket.Object(filename)
         if not cat.exists():
             cat = FakeKey(url)
             if not cat.ok:
@@ -100,7 +109,7 @@ def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only=
             continue
         imgs[img.id] = {
             "media": img
-        }
+            }
         fields.append("pk")
         for field in fields:
             if first_only:

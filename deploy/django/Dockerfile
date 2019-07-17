@@ -18,4 +18,4 @@ RUN chmod +x /entrypoint
 
 WORKDIR /app
 
-ENTRYPOINT ["/entrypoint"]
+CMD ["/entrypoint"]

@@ -28,21 +28,21 @@ class FakeKey(object):
 
 class ImgUrl(object):
     def __init__(self, key):
-        self.filename = key.name
-        self.filetype = constants.ACCEPTED_FILES[key.name.split(".")[-1]]
+        self.filename = key.key
+        self.filetype = constants.ACCEPTED_FILES[key.key.split(".")[-1]]
         try:
             self.time_taken = app.utils.utils.localise(dt.fromtimestamp(
-                float(re.search(constants.REGEXES["file_timestamp"], key.name).groups()[0].replace("_", "."))))
+                float(re.search(constants.REGEXES["file_timestamp"], key.key).groups()[0].replace("_", "."))))
         except:
             self.time_taken = app.utils.utils.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
         self.size = key.size
-        self.url = key.generate_url(expires_in=0, query_auth=False)
-        self.httpurl = key.generate_url(expires_in=0, query_auth=False, force_http=True)
-        if "-" not in key.name:
+        self.url = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key})
+        self.httpurl = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key}, HttpMethod='http')
+        if "-" not in key.key:
             self.direction = constants.SCHRODINGER
         else:
-            if key.name.split("-")[-1].split(".")[0] == "1":
+            if key.key.split("-")[-1].split(".")[0] == "1":
                 self.direction = constants.INSIDE
             else:
                 self.direction = constants.OUTSIDE
