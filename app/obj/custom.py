@@ -15,10 +15,6 @@ class FakeKey(object):
     def __init__(self, url):
         self.name = url.split("/")[-1].split("?")[0]
         response = requests.get(url)
-        if response.ok:
-            self.size = len(response.content)
-        else:
-            self.size = 0
         self.ok = response.ok
         self.__url = url
 
@@ -36,9 +32,8 @@ class ImgUrl(object):
         except:
             self.time_taken = app.utils.utils.localise(dt.now())
         self.id = base64.urlsafe_b64encode((self.filename + settings.SALT).encode())
-        self.size = key.size
-        self.url = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key})
-        self.httpurl = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key}, HttpMethod='http')
+        self.url = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key}).split('?')[0]
+        self.httpurl = db.conn.client.generate_presigned_url('get_object', Params={'Bucket': settings.IMAGE_BUCKET, 'Key': key.key}, HttpMethod='http').split('?')[0]
         if "-" not in key.key:
             self.direction = constants.SCHRODINGER
         else:

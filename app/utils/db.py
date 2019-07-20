@@ -2,6 +2,7 @@ import re
 from datetime import datetime as dt
 
 import boto3
+from botocore.exceptions import ClientError
 
 from app.obj.custom import FakeKey, ImgUrl
 from app.utils import constants
@@ -71,7 +72,9 @@ class S3Conn(object):
     def get_cat_from_url(self, url):
         filename = url.split("/")[-1].split("?")[0]
         cat = self.bucket.Object(filename)
-        if not cat.exists():
+        try:
+            cat.load()
+        except ClientError:
             cat = FakeKey(url)
             if not cat.ok:
                 return None
@@ -98,6 +101,7 @@ class S3Conn(object):
 def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only=False):
     imgs = {}
     urls = url_objects.distinct("url").order_by("url")
+    print(urls)
     if page_end is not None:
         urls = urls[page_start:page_end]
     for i in urls:

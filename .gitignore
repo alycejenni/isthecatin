@@ -4,3 +4,5 @@ deploy/.envs/
 .idea
 /app/static/sass/*.css
 /node_modules/
+
+deploy/postgres/maintenance/dumps/
