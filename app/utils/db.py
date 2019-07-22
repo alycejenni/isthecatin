@@ -30,7 +30,7 @@ class S3Conn(object):
         listlen = n if start is None else start + n
         if previous_key is not None:
             prefix = \
-            re.search(constants.REGEXES["file_timestamp"], previous_key).groups()[0].split("_")[0][
+            re.search(constants.REGEXES['file_timestamp'], previous_key).groups()[0].split('_')[0][
             :-rf]
         else:
             # start with now and work backwards
@@ -70,7 +70,7 @@ class S3Conn(object):
         return self.bucket.Object(filename)
 
     def get_cat_from_url(self, url):
-        filename = url.split("/")[-1].split("?")[0]
+        filename = url.split('/')[-1].split('?')[0]
         cat = self.bucket.Object(filename)
         try:
             cat.load()

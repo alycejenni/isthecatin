@@ -23,7 +23,7 @@
             {% endfor %}
         </div>
     </div>
-    <form method="post" action="{% url 'highlights' page %}"> {% csrf_token %}
+    <form method="post" action="{% url 'highlights.index' page %}"> {% csrf_token %}
         <div class="row padded-row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                 {% if page > 1 %}

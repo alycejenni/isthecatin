@@ -1,7 +1,7 @@
 {% extends 'basepage.html' %}
 {% block content %}
     <div class="container">
-        <form method="post" action="{% url 'bulkedit' page %}">{% csrf_token %}
+        <form method="post" action="{% url 'admin.bulkedit' page %}">{% csrf_token %}
             <div class="row padded-row">
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
                     <input type="radio" value="all" id="rdoAll" name="display"
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </form>
-        <form method="post" action="{% url 'bulkedit' page %}"> {% csrf_token %}
+        <form method="post" action="{% url 'admin.bulkedit' page %}"> {% csrf_token %}
             <div class="row padded-row">
                 {% for img in imgs %}
                     <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 padded-row">
