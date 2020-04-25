@@ -5,32 +5,32 @@ from app.obj.models import Casualty, Highlight
 
 
 class UserLogin(AuthenticationForm):
-    username = forms.CharField(label="username", max_length=30, widget=forms.TextInput(attrs={
-        "tabindex": 1
+    username = forms.CharField(label='username', max_length=30, widget=forms.TextInput(attrs={
+        'tabindex': 1
     }))
-    password = forms.CharField(label="password", widget=forms.PasswordInput(attrs={
-        "tabindex": 2
+    password = forms.CharField(label='password', widget=forms.PasswordInput(attrs={
+        'tabindex': 2
     }))
 
 
-class NominateHighlight(forms.ModelForm):
+class CreateHighlight(forms.ModelForm):
     url = forms.URLField(required=True, widget=forms.HiddenInput(attrs={
-        "class": "hidden-url"
+        'class': 'hidden-url'
     }))
     comment = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        "style": "width:100%"
+        'style': 'width:100%'
     }))
 
     class Meta:
         model = Highlight
-        fields = ["url", "comment"]
+        fields = ['url', 'comment']
 
 
 class CreateCasualty(forms.ModelForm):
     url = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        "onkeyup": "refreshCaught()",
-        "onchange": "refreshCaught()",
-        "placeholder": "image url here",
+        'onkeyup': 'refreshCaught()',
+        'onchange': 'refreshCaught()',
+        'placeholder': "image url here",
         "class": "form-control"
     }))
     creature_type = forms.CharField(widget=forms.TextInput(attrs={

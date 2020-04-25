@@ -9,12 +9,12 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
           {% if request.user.is_superuser %}
-              <li><a class="icon-admin" href="{% url 'admin' %}">Admin</a></li>
+              <li><a class="icon-admin" href="{% url 'catmin:index' %}">Admin</a></li>
           {% endif %}
-        <li><a class="icon-home" href="{% url 'current' %}">Home</a></li>
-        <li><a class="icon-history" href="{% url 'history' '1' %}">History</a></li>
-        <li><a class="icon-highlights" href="{% url 'highlights' '1' %}">Highlights</a></li>
-        <li><a class="icon-rip" href="{% url 'rip' %}">R.I.P.</a></li>
+        <li><a class="icon-home" href="{% url 'home:index' %}">Home</a></li>
+        <li><a class="icon-history" href="{% url 'history:index' '1' %}">History</a></li>
+        <li><a class="icon-highlights" href="{% url 'highlights:index' '1' %}">Highlights</a></li>
+        <li><a class="icon-rip" href="{% url 'casualties:index' %}">R.I.P.</a></li>
         <li><a class="icon-feed" href="{% url 'catfood' %}" target="_blank">Feed</a></li>
         <li><a class="icon-github" href="https://github.com/alycejenni/isthecatin" target="_blank">Github</a></li>
       </ul>
