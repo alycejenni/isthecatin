@@ -83,8 +83,9 @@ class S3Conn(object):
     def set_not_cat(self, b64imgid):
         filename = decode_filename(b64imgid)
         new_key = "not a cat/" + filename
-        self.bucket.copy_key(new_key, settings.IMAGE_BUCKET, filename)
-        self.bucket.delete_key(filename)
+        original_key = settings.IMAGE_BUCKET + '/' + filename
+        self.bucket.Object(new_key).copy_from(CopySource=original_key)
+        self.bucket.Object(filename).delete()
 
     def delete_key(self, b64imgid):
         filename = decode_filename(b64imgid)
@@ -96,31 +97,30 @@ class S3Conn(object):
         self.bucket.copy_key(new_key, settings.IMAGE_BUCKET, filename)
         self.bucket.delete_key(filename)
 
-
-# UTILITY METHODS
-def get_cats_from_objects(url_objects, page_start, page_end, fields, first_only=False):
-    imgs = {}
-    urls = url_objects.distinct("url").order_by("url")
-    print(urls)
-    if page_end is not None:
-        urls = urls[page_start:page_end]
-    for i in urls:
-        if page_end is not None and len(imgs) == page_end - page_start:
-            break
-        obj = url_objects.filter(url__exact=i.url)
-        img = conn.get_cat_from_url(i.url)
-        if img is None:
-            continue
-        imgs[img.id] = {
-            "media": img
-            }
-        fields.append("pk")
-        for field in fields:
-            if first_only:
-                imgs[img.id][field] = getattr(obj[0], field)
-            else:
-                imgs[img.id][field] = [getattr(o, field) for o in obj]
-    return [imgs[i] for i in imgs]
+    @classmethod
+    def get_cats_from_objects(cls, url_objects, page_start, page_end, fields, first_only=False):
+        imgs = {}
+        urls = url_objects.distinct("url").order_by("url")
+        print(urls)
+        if page_end is not None:
+            urls = urls[page_start:page_end]
+        for i in urls:
+            if page_end is not None and len(imgs) == page_end - page_start:
+                break
+            obj = url_objects.filter(url__exact=i.url)
+            img = conn.get_cat_from_url(i.url)
+            if img is None:
+                continue
+            imgs[img.id] = {
+                "media": img
+                }
+            fields.append("pk")
+            for field in fields:
+                if first_only:
+                    imgs[img.id][field] = getattr(obj[0], field)
+                else:
+                    imgs[img.id][field] = [getattr(o, field) for o in obj]
+        return [imgs[i] for i in imgs]
 
 
 conn = S3Conn()

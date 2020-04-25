@@ -9,29 +9,28 @@ from django.views import View
 from app.obj.custom import ImgUrl
 from app.obj.forms import CreateCasualty
 from app.obj.models import Casualty
-from app.utils import db
-
-prefix = '^casualties'
+from app.utils.db import conn
 
 
-class CasualtiesView(View):
-    url_pattern = prefix + r'$'
-    name = 'casualties.index'
+class IndexView(View):
+    url_pattern = ''
+    name = 'index'
 
     def get(self, request):
-        animals = db.get_cats_from_objects(Casualty.objects, 0, None, ['known_deceased'], True)
+        animals = conn.get_cats_from_objects(Casualty.objects, 0, None, ['known_deceased'], True)
         return render(request, 'rip.html', {
             'animals': animals
             })
 
 
-class CasualtiesCreateView(View):
-    url_pattern = prefix + r'/create$'
-    name = 'casualties.create'
+class CreateView(View):
+    url_pattern = 'create'
+    name = 'create'
 
-    def get(self, request, img):
+    def get(self, request):
+        img = request.POST.get('img', None)
         if img is not None:
-            img = ImgUrl(kitty.get_key(img))
+            img = ImgUrl(conn.get_key(img))
             form = CreateCasualty(initial={
                 'url': img.url,
                 'time_taken': img.time_taken.strftime('%Y-%m-%d')
@@ -55,12 +54,12 @@ class CasualtiesCreateView(View):
             if form.is_valid():
                 form.save()
                 print('saved')
-        return redirect(CasualtiesView.name)
+        return redirect(IndexView.name)
 
 
-class CasualtiesGetView(View):
-    url_pattern = prefix + r'/get$'
-    name = 'casualties.get'
+class SingleView(View):
+    url_pattern = 'view'
+    name = 'single'
 
     def get(self, request):
         pk = int(request.GET.get('pk', None))
@@ -70,17 +69,17 @@ class CasualtiesGetView(View):
             casualty_json[1:-1].split("\"fields\": ")[1][0:-1].replace("false", "False").replace(
                 "true", "True"))
         catflap = render_to_string("../templates/fragments/media.html", {
-            "src": kitty.get_cat_from_url(casualty_dict["url"])
+            "src": conn.get_cat_from_url(casualty_dict["url"])
             })
         casualty_dict["catflap_media"] = catflap
         if casualty_dict["additional_image"] != "":
             critter = render_to_string("../templates/fragments/media.html", {
-                "src": kitty.get_cat_from_url(casualty_dict["additional_image"])
+                "src": conn.get_cat_from_url(casualty_dict["additional_image"])
                 })
             casualty_dict["critter_media"] = critter
         if casualty_dict["guilty_cat"] != "":
             guilty = render_to_string("../templates/fragments/media.html", {
-                "src": kitty.get_cat_from_url(casualty_dict["guilty_cat"])
+                "src": conn.get_cat_from_url(casualty_dict["guilty_cat"])
                 })
             casualty_dict["guilty_media"] = guilty
         return JsonResponse(casualty_dict)

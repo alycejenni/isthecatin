@@ -12,7 +12,7 @@ class CatFood(Feed):
     feed_type = WhiskasBox
     title = 'Cat Flap RSS'
     link = '/catfood/'
-    description = 'A list of pictures, generally alternating between my cat's face and bum,' \
+    description = 'A list of pictures, generally alternating between my cat\'s face and bum,' \
                   'as he exits and returns through the cat flap. Occasionally featuring human feet,' \
                   'hands, and other body parts (usually still attached to the rest of the body).'
 

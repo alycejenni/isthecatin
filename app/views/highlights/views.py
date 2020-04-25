@@ -3,21 +3,19 @@ from django.views import View
 
 from app.obj.forms import CreateHighlight
 from app.obj.models import Highlight
-from app.utils import db
-
-prefix = r'^highlights'
+from app.utils.db import conn
 
 
-class HighlightsView(View):
-    url_pattern = prefix + r'/(?P<page>[0-9]+)$'
-    name = 'highlights.index'
+class IndexView(View):
+    url_pattern = '<int:page>'
+    name = 'index'
 
     def get(self, request, page):
         page = int(page)
         page_size_limit = 20
         page_start = (page - 1) * page_size_limit
         page_end = page * page_size_limit
-        imgs = db.get_cats_from_objects(Highlight.objects, page_start, page_end, ['comment'])
+        imgs = conn.get_cats_from_objects(Highlight.objects, page_start, page_end, ['comment'])
         return render(request, 'highlights.html', {
             'imgs': imgs,
             'page': page,
@@ -35,13 +33,13 @@ class HighlightsView(View):
             self.get(request, page)
 
 
-class HighlightsCreateView(View):
-    url_pattern = prefix + r'/create$'
-    name = 'highlights.create'
+class CreateView(View):
+    url_pattern = 'create'
+    name = 'create'
 
     def post(self, request):
         form = CreateHighlight(request.POST)
         if form.is_valid():
             form.save()
             print('saved')
-        return redirect(HighlightsView.name, page='1')
+        return redirect('highlights:index', page='1')

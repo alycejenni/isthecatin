@@ -7,7 +7,7 @@
     <script src="{% static "javascript/createcasualty.js" %}" type="text/javascript"></script>
 {% endblock %}
 {% block content %}
-    <form method="post" action="{% url 'casualties.create' %}">
+    <form method="post" action="{% url 'casualties:create' %}">
         {% csrf_token %}
         <div class="container">
             <div class="row padded-row">

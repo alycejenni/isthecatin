@@ -4,23 +4,23 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from app.utils import constants
+from app.utils.db import conn
 
 decorators = [login_required(login_url='login'), user_passes_test(lambda u: u.is_superuser)]
-prefix = r'^admin'
 
 
-class AdminView(View):
-    url_pattern = prefix + '$'
-    name = 'admin.index'
+class IndexView(View):
+    url_pattern = ''
+    name = 'index'
 
     @method_decorator(decorators)
     def get(self, request):
         return render(request, 'admin/admin.html')
 
 
-class AdminBulkEditView(View):
-    url_pattern = prefix + '/bulkedit/(?P<page>[0-9]+)$'
-    name = 'admin.bulk'
+class BulkEditView(View):
+    url_pattern = 'bulkedit/<int:page>'
+    name = 'bulkedit'
     template = 'admin/bulkedit.html'
 
     @staticmethod
@@ -33,7 +33,7 @@ class AdminBulkEditView(View):
         page = int(page)
         page_start = constants.BULK_EDIT_PAGE_SIZE * (page - 1)
         return render(request, self.template, {
-            'imgs': kitty.cats(page_start, constants.BULK_EDIT_PAGE_SIZE),
+            'imgs': conn.cats(page_start, constants.BULK_EDIT_PAGE_SIZE),
             'page': page
             })
 
@@ -45,11 +45,11 @@ class AdminBulkEditView(View):
             items = []
             displaytype = request.POST['display']
             if displaytype == 'cats':
-                items = kitty.cats(page_start, constants.BULK_EDIT_PAGE_SIZE)
+                items = conn.cats(page_start, constants.BULK_EDIT_PAGE_SIZE)
             elif displaytype == 'all':
-                items = kitty.custom_keys(page_start, constants.BULK_EDIT_PAGE_SIZE)
+                items = conn.custom_keys(page_start, constants.BULK_EDIT_PAGE_SIZE)
             elif displaytype == 'notcats':
-                items = kitty.notcats(page_start, constants.BULK_EDIT_PAGE_SIZE)
+                items = conn.notcats(page_start, constants.BULK_EDIT_PAGE_SIZE)
             return render(request, self.template, {
                 'imgs': items,
                 'displaytype': displaytype,
@@ -62,9 +62,9 @@ class AdminBulkEditView(View):
             elif btn == 'Previous page':
                 return redirect('bulkedit', page=str(page - 1))
             elif btn == 'No cats here':
-                btn_method = kitty.set_not_cat
+                btn_method = conn.set_not_cat
             elif btn == 'Delete these':
-                btn_method = kitty.delete_key
+                btn_method = conn.delete_key
             else:
                 raise NotImplementedError
             if 'items' in request.POST:
@@ -75,6 +75,6 @@ class AdminBulkEditView(View):
                     except:
                         pass
                 return render(request, self.template, {
-                    'imgs': kitty.cats(page_start, constants.BULK_EDIT_PAGE_SIZE),
+                    'imgs': conn.cats(page_start, constants.BULK_EDIT_PAGE_SIZE),
                     'page': page
                     })

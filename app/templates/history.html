@@ -14,13 +14,16 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <form method="post" action="{% url 'set.notcat' img.id %}">{% csrf_token %}
+                                        <form method="post" action="{% url 'set:notcat' %}">{% csrf_token %}
+                                            <input type="hidden" value="{{ img.id.decode }}" name="img">
+                                            <input type="hidden" value="{{ page }}" name="page">
                                             <input type="image" src="{% static 'images/notcat.png' %}" width="20px"
                                                    alt="button to mark as not a cat"
                                                    title="this isn't a cat!"/></form>
                                     </td>
                                     <td>
-                                        <form method="post" action="{% url 'casualties.create' img.id %}">{% csrf_token %}
+                                        <form method="post" action="{% url 'casualties:create' %}">{% csrf_token %}
+                                            <input type="hidden" value="{{ img.id }}" name="img">
                                             <input type="image" src="{% static 'images/skull-icon.png' %}" width="20px"
                                                    alt="button to mark image as containing possible casualty"
                                                    title="he's got something!"/></form>
@@ -48,7 +51,7 @@
                 </div>
             {% endfor %}
         </div>
-        <form method="post" action="{% url 'history.index' page %}"> {% csrf_token %}
+        <form method="post" action="{% url 'history:index' page %}"> {% csrf_token %}
             <div class="row padded-row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                     {% if page > 1 %}
@@ -66,7 +69,7 @@
         </div>
     </div>
     <div id="popupHighlight" style="width: 100%; margin: 0;" class="popup">
-        <form method="post" action="{% url 'highlights.create' %}">
+        <form method="post" action="{% url 'highlights:create' %}">
             {% csrf_token %}
             <div class="container-fluid">
                 <div class="row">
