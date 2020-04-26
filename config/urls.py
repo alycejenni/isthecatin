@@ -1,5 +1,5 @@
 from django.contrib import admin as djangoadmin
-from django.contrib.auth import login, logout
+from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.static import serve
 
@@ -17,11 +17,10 @@ urlpatterns = [
         'document_root': STATIC_ROOT
         }),
     path(r'catfood', sitefeeds.CatFood(), name='catfood'),
-    path(r'login', login, {
-        'template_name': 'user/login.html',
-        'authentication_form': siteforms.UserLogin
-        }, name='user.login'),
-    path(r'logout', logout, name='user.logout'),
+    path(r'login', auth_views.LoginView.as_view(template_name='user/login.html',
+                                                authentication_form=siteforms.UserLogin),
+         name='user.login'),
+    path(r'logout', auth_views.LogoutView.as_view(), name='user.logout'),
     path('admin/tools/', djangoadmin.site.urls, name='admin.tools'),
     path('set/', include('app.views.set.urls', namespace='set'))
     ]
