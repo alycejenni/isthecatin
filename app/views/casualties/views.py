@@ -54,7 +54,7 @@ class CreateView(View):
             if form.is_valid():
                 form.save()
                 print('saved')
-        return redirect(IndexView.name)
+        return redirect('casualties:index')
 
 
 class SingleView(View):

@@ -19,16 +19,16 @@ class IndexView(View):
         return render(request, 'highlights.html', {
             'imgs': imgs,
             'page': page,
-            'more_pages': (len(imgs) != 0) and (page_end < len(imgs) - 1)
+            'more_pages': len(conn.get_cats_from_objects(Highlight.objects, page_end, page_end+1, ['comment'])) != 0
             })
 
     def post(self, request, page):
         page = int(page)
         btn = request.POST['btn_submit']
         if btn == 'Next page':
-            return redirect(self.name, page=str(page + 1))
+            return redirect('highlights:index', page=page + 1)
         elif btn == 'Previous page':
-            return redirect(self.name, page=str(page - 1))
+            return redirect('highlights:index', page=page - 1)
         else:
             self.get(request, page)
 

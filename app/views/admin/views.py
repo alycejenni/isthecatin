@@ -58,9 +58,9 @@ class BulkEditView(View):
         elif 'btn_submit' in request.POST:
             btn = request.POST['btn_submit']
             if btn == 'Next page':
-                return redirect('bulkedit', page=str(page + 1))
+                return redirect('catmin:bulkedit', page=page + 1)
             elif btn == 'Previous page':
-                return redirect('bulkedit', page=str(page - 1))
+                return redirect('catmin:bulkedit', page=page - 1)
             elif btn == 'No cats here':
                 btn_method = conn.set_not_cat
             elif btn == 'Delete these':

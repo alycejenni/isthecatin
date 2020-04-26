@@ -27,8 +27,8 @@ class IndexView(View):
         page = int(page)
         btn = request.POST['btn_submit']
         if btn == 'Next page':
-            return redirect('history:index', page=str(page + 1))
+            return redirect('history:index', page=page + 1)
         elif btn == 'Previous page':
-            return redirect('history:index', page=str(page - 1))
+            return redirect('history:index', page=page - 1)
         else:
             self.get(request, page)
